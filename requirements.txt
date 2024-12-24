@@ -2,4 +2,3 @@ pyinstaller
 pygame
 noise
 numpy
-sys
