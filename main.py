@@ -11,12 +11,13 @@ pygame.display.set_caption(SCREEN_NAME)
 
 running = True
 
+map.generate(1)
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    map.generate(1)
     map.draw()
     pygame.display.flip()
 
