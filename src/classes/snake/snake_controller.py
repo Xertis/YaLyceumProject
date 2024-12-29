@@ -20,13 +20,13 @@ class CONTROLLER:
         keys = pygame.key.get_pressed()
         move_x, move_y = 0, 0
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             move_x = -self.speed
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             move_x = self.speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             move_y = -self.speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             move_y = self.speed
 
         if_collision = self.collision((move_x + pos[0], move_y + pos[1]))
