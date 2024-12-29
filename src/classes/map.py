@@ -1,6 +1,5 @@
 import pygame
 import numpy as np
-from noise import snoise2
 from src.classes.snake.snake import SNAKE
 
 
@@ -30,27 +29,4 @@ class MAP:
         pygame.draw.circle(self.screen, "white", self.snake.pos, self.snake.radius)
     
     def generate(self, seed, conf=None):
-        if conf is None:
-            conf = {
-                "scale": 0.005,
-                "octaves": 6,
-                "persistence": 0.5,
-                "lacunarity": 2.0
-            }
-
-        scale = conf["scale"]
-        octaves = conf["octaves"]
-        persistence = conf["persistence"]
-        lacunarity = conf["lacunarity"]
-        
-        for y in range(self.height):
-            for x in range(self.width):
-                noise_level = snoise2(
-                    x * scale,
-                    y * scale, 
-                    base=seed,
-                    octaves=octaves, 
-                    persistence=persistence, 
-                    lacunarity=lacunarity
-                )
-                self.background[y][x] = noise_level
+        pass

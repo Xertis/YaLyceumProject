@@ -1,4 +1,3 @@
-import pygame
 from src.classes.snake.snake_controller import CONTROLLER
 from scipy.spatial import distance
 
