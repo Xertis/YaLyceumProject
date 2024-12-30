@@ -26,10 +26,10 @@ jobs:
 
       - name: Building
         run: |
-          pyinstaller main.py
+          pyinstaller gravity_snake.spec
 
       - name: Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: Build
-          path: dist
+          path: dist/main
