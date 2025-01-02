@@ -1,3 +1,3 @@
 # Окно
 SCREEN_WIDTH, SCREEN_HEIGHT = 800, 600
-SCREEN_NAME = "Snake"
+SCREEN_NAME = "Gravity Snake"

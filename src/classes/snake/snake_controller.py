@@ -14,7 +14,7 @@ class CONTROLLER:
             self.radius * 2
         )
 
-        return False # Пока, обработка столкновений не работает, доработайте
+        return False  # Пока, обработка столкновений не работает, доработайте
 
     def snake_move(self, pos):
         keys = pygame.key.get_pressed()
@@ -36,4 +36,3 @@ class CONTROLLER:
             pos[1] += move_y
 
         return pos
-        

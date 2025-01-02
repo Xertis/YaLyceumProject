@@ -20,7 +20,7 @@ class MAP:
 
     def get_size(self):
         return (self.width, self.height)
-    
+
     def draw(self):
         for y in range(self.height):
             for x in range(self.width):
@@ -34,6 +34,6 @@ class MAP:
             LOADER.place(segment, self.snake_tail_sprite, self.screen, 0)
 
         self.snake_head_sprite.place(self.snake.pos, self.screen, 0)
-    
+
     def generate(self, seed, conf=None):
         pass

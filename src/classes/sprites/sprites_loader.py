@@ -2,9 +2,10 @@ from pygame import image, surface, transform
 import sys
 import os
 
+
 class LOADER:
     @staticmethod
-    def load(path, size: tuple=None):
+    def load(path, size: tuple = None):
 
         base_path = ''
         if hasattr(sys, '_MEIPASS'):
@@ -24,7 +25,7 @@ class LOADER:
 
         else:
             return False
-        
+
     @staticmethod
     def place(pos, sprite: surface.Surface, screen: surface.Surface, angle=0):
         rect = sprite.get_rect()

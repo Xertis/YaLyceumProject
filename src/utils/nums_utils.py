@@ -5,5 +5,5 @@ class nums:
             num = max_val
         elif num > max_val:
             num = min_val
-        
+
         return num
