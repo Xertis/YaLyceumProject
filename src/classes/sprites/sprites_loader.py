@@ -6,10 +6,11 @@ class LOADER:
     @staticmethod
     def load(path, size: tuple=None):
 
+        base_path = ''
         if hasattr(sys, '_MEIPASS'):
             base_path = sys._MEIPASS
         else:
-            base_path = os.path.abspath(".")
+            base_path = os.getcwd()
 
         path = os.path.join(base_path, "res", "sprites", path)
 
@@ -25,10 +26,11 @@ class LOADER:
             return False
         
     @staticmethod
-    def place(pos, sprite: surface.Surface, screen: surface.Surface):
+    def place(pos, sprite: surface.Surface, screen: surface.Surface, angle=0):
         rect = sprite.get_rect()
 
         rect.x = pos[0]
         rect.y = pos[1]
 
+        sprite = transform.rotate(sprite, angle)
         screen.blit(sprite, rect)

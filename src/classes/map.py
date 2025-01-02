@@ -1,7 +1,8 @@
 import pygame
 import numpy as np
 from src.classes.snake.snake import SNAKE
-from src.classes.sprites_loader import LOADER
+from src.classes.sprites.sprites_loader import LOADER
+from src.classes.sprites.sprites_animator import ANIMATOR
 
 
 class MAP:
@@ -12,9 +13,10 @@ class MAP:
         self.snake = SNAKE(15, self, [15, 15])
         self.background = np.zeros((self.height, self.width))
 
-        size = (38, 38)
-        self.snake_head_sprite = LOADER.load("snake_head.png", size)
-        self.snake_tail_sprite = LOADER.load("snake_tail.png", size)
+        self.snake_head_sprite = LOADER.load("snake_head.png", (38, 38*4))
+        self.snake_tail_sprite = LOADER.load("snake_tail.png", (38, 38))
+
+        self.snake_head_sprite = ANIMATOR(self.snake_head_sprite, True)
 
     def get_size(self):
         return (self.width, self.height)
@@ -29,9 +31,9 @@ class MAP:
         self.screen.fill("black")
 
         for segment in self.snake.tail:
-            LOADER.place(segment, self.snake_tail_sprite, self.screen)
+            LOADER.place(segment, self.snake_tail_sprite, self.screen, 0)
 
-        LOADER.place(self.snake.pos, self.snake_head_sprite, self.screen)
+        self.snake_head_sprite.place(self.snake.pos, self.screen, 0)
     
     def generate(self, seed, conf=None):
         pass
