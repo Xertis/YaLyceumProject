@@ -10,6 +10,8 @@ screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 clock = pygame.time.Clock()
 
+map.generate()
+
 running = True
 
 while running:

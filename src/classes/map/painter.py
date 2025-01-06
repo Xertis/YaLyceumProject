@@ -1,4 +1,4 @@
-import pygame
+from pygame import surface
 import numpy as np
 from src.classes.snake.snake import SNAKE
 from src.classes.sprites.sprites_loader import LOADER
@@ -14,4 +14,14 @@ class PAINTER:
             LOADER.place(segment, self.map.snake_tail_sprite, self.map.screen, 0)
 
         self.map.snake_head_sprite.place(self.map.snake.pos, self.map.screen, 0)
+
+    def draw_grid(self):
+        size = self.map.grid.grid_size
+
+        for layer in self.map.grid.layers:
+            for y in range(self.map.grid.height):
+                for x in range(self.map.grid.width):
+                    sprite = layer[x][y]
+                    if isinstance(sprite, surface.Surface):
+                        LOADER.place((x * size, y * size), sprite, self.map.screen)
 
