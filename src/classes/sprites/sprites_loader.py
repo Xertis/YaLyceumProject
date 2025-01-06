@@ -30,8 +30,10 @@ class LOADER:
     def place(pos, sprite: surface.Surface, screen: surface.Surface, angle=0):
         rect = sprite.get_rect()
 
-        rect.x = pos[0]
-        rect.y = pos[1]
+        sprite_width, sprite_height = sprite.get_size()
+        
+        rect.x = pos[0] - sprite_width // 2
+        rect.y = pos[1] - sprite_height // 2
 
         sprite = transform.rotate(sprite, angle)
         screen.blit(sprite, rect)

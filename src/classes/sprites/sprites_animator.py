@@ -1,6 +1,7 @@
 from pygame import image, surface, transform
 from src.utils.nums_utils import nums
 from src.utils.atlas_utils import atlas
+from src.classes.sprites.sprites_loader import LOADER
 
 
 class ANIMATOR:
@@ -21,10 +22,4 @@ class ANIMATOR:
             self.current_sprite = nums.in_range(
                 self.current_sprite + 1, 0, len(self.sprites)-1)
 
-        rect = sprite.get_rect()
-
-        rect.x = pos[0]
-        rect.y = pos[1]
-
-        sprite = transform.rotate(sprite, angle)
-        screen.blit(sprite, rect)
+        LOADER.place(pos, sprite, screen, angle)

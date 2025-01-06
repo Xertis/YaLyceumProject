@@ -7,7 +7,7 @@ class SNAKE:
         self.pos = pos
         self.old_pos = [0, 0]
         self.radius = radius
-        self.controller = CONTROLLER(radius, 5)
+        self.controller = CONTROLLER(radius, 10)
         self.tail = [[0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [
             0, 105]]  # Для теста хвоста, в идеале, сегменты должны добавляться после съеденного яблока
         self.map = map
@@ -30,8 +30,8 @@ class SNAKE:
             old_x, old_y = cell_x, cell_y
             i += 1
 
-    def move(self):
-        pos = self.controller.snake_move(self.pos[:])
+    def move(self, speed=None):
+        pos = self.controller.snake_move(self.pos[:], speed)
 
         map_size = self.map.get_size()
 
@@ -41,6 +41,7 @@ class SNAKE:
         # Самая простая реализацию обработки столкновений головы змейки с телом
         for i in range(1, len(self.tail)):
             segment = self.tail[i]
+
             if distance.euclidean(segment, pos) < self.radius*2-1.5:
                 return
 
