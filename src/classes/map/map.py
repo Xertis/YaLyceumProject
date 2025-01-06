@@ -21,7 +21,7 @@ class MAP:
         self.snake_head_sprite = LOADER.load("snake_head.png", (38, 38*4))
         self.snake_tail_sprite = LOADER.load("snake_tail.png", (38, 38))
 
-        self.snake_head_sprite = ANIMATOR(self.snake_head_sprite, True)
+        self.snake_head_sprite = ANIMATOR(self.snake_head_sprite, 0.5*33*20)
 
         self.painter = PAINTER(self)
 

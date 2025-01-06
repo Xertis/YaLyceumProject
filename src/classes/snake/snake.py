@@ -13,7 +13,7 @@ class SNAKE:
         self.map = map
 
     def tail_move(self):
-        pos = self.pos
+        pos = self.old_pos
 
         old_x, old_y = pos[0], pos[1]
 
@@ -45,7 +45,7 @@ class SNAKE:
             if distance.euclidean(segment, pos) < self.radius*2-1.5:
                 return
 
-        if pos != self.pos:
+        if distance.euclidean(self.old_pos, pos) > self.radius // 2:
             self.old_pos = self.pos[:]
 
         self.pos = pos

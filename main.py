@@ -18,9 +18,9 @@ while running:
             running = False
 
     delta_time = clock.tick(FPS) / 1000.0
-
     speed = map.snake.controller.speed * delta_time
     map.snake.move(speed)
+
     map.draw()
     pygame.display.flip()
     
