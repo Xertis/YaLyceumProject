@@ -22,6 +22,10 @@ class PAINTER:
             for y in range(self.map.grid.height):
                 for x in range(self.map.grid.width):
                     sprite = layer[x][y]
+                    pos = (x * size, y * size)
+
                     if isinstance(sprite, surface.Surface):
-                        LOADER.place((x * size, y * size), sprite, self.map.screen)
+                        LOADER.place(pos, sprite, self.map.screen)
+                    elif isinstance(sprite, ANIMATOR):
+                        sprite.place(pos, self.map.screen)
 

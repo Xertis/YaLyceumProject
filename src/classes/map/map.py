@@ -18,10 +18,11 @@ class MAP:
 
         self.snake_head_sprite = LOADER.load("snake_head.png", (38, 38*4))
         self.snake_tail_sprite = LOADER.load("snake_tail.png", (38, 38))
-        self.background_sprite = LOADER.load("background.png", (38, 38))
+        self.background_sprite = LOADER.load("background.png", (38, 38*4))
         self.platform_sprite = LOADER.load("platform.png", (38, 38))
 
         self.snake_head_sprite = ANIMATOR(self.snake_head_sprite, 0.5*33*20)
+        self.background_sprite = ANIMATOR(self.background_sprite, 50*33.20)
 
         self.painter = PAINTER(self)
         self.grid = GRID(self)
