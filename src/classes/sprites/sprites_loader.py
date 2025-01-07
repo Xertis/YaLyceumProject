@@ -15,16 +15,15 @@ class LOADER:
 
         path = os.path.join(base_path, "res", "sprites", path)
 
-        if os.path.exists(path):
-            sprite = image.load(path)
-
-            if not size:
-                return sprite
-            else:
-                return transform.scale(sprite, size)
-
-        else:
+        if not os.path.exists(path):
             return False
+
+        sprite = image.load(path)
+
+        if not size:
+            return sprite
+        else:
+            return transform.scale(sprite, size)
 
     @staticmethod
     def place(pos, sprite: surface.Surface, screen: surface.Surface, angle=0):
