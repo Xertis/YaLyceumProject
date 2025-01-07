@@ -12,9 +12,9 @@ class GRID:
         grid = np.zeros((self.width, self.height)).tolist()
 
         self.layers = [
-            grid[:], 
-            grid[:], 
-            grid[:]
+            grid[:][:], 
+            grid[:][:], 
+            grid[:][:]
         ]
 
     def set_background(self, sprite):
