@@ -39,7 +39,7 @@ class MAP:
         # ТЕСТ ГЕНЕРАЦИИ, НЕ ИТОГОВЫЙ ВАРИАНТ
         for y in range(self.grid.height):
             for x in range(self.grid.width):
-                z = randint(0, 2)
+                z = randint(0, 8)
 
                 if z == 0:
                     self.grid.set(1, x, y, self.platform_sprite)

@@ -1,20 +1,43 @@
 import pygame
+from pygame import surface, Rect
 
 
 class CONTROLLER:
-    def __init__(self, radius, speed):
+    def __init__(self, map, radius, speed):
+        self.map = map
         self.radius = radius
         self.speed = speed
 
     def collision(self, pos):
-        rect = pygame.Rect(
+        snake = Rect(
             pos[0] - self.radius,
             pos[1] - self.radius,
             self.radius * 2,
             self.radius * 2
         )
 
-        return False  # Пока, обработка столкновений не работает, доработайте
+        for y in range(self.map.grid.height):
+            for x in range(self.map.grid.width):
+                
+                if isinstance(self.map.grid.layers[1][x][y], float):
+                    continue
+                
+                size = self.map.grid.grid_size
+                x1, y1 = x * size, y * size
+
+                size = size // 2
+
+                obj = Rect(
+                    x1-size, 
+                    y1-size, 
+                    size*2,
+                    size*2
+                )
+
+                if snake.colliderect(obj):
+                    return True
+
+        return False
 
     def snake_move(self, pos, speed=None):
         keys = pygame.key.get_pressed()

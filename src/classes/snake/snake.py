@@ -7,9 +7,8 @@ class SNAKE:
         self.pos = pos
         self.old_pos = [0, 0]
         self.radius = radius
-        self.controller = CONTROLLER(radius, 10)
-        self.tail = [[0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [0, 105], [
-            0, 105]]  # Для теста хвоста, в идеале, сегменты должны добавляться после съеденного яблока
+        self.controller = CONTROLLER(map, radius, 10)
+        self.tail = [[0, 105], [0, 105], [0, 105], [0, 105]]  # Для теста хвоста, в идеале, сегменты должны добавляться после съеденного яблока
         self.map = map
 
     def tail_move(self):
@@ -23,7 +22,7 @@ class SNAKE:
             cell_x = cell[0]
             cell_y = cell[1]
 
-            if distance.euclidean(cell, [old_x, old_y]) < self.radius * 1.7:
+            if distance.euclidean(cell, [old_x, old_y]) < self.radius * 1.75:
                 break
 
             self.tail[i] = [old_x, old_y]

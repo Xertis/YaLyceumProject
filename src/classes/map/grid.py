@@ -1,3 +1,4 @@
+import copy
 import numpy as np
 
 class GRID:
@@ -12,9 +13,9 @@ class GRID:
         grid = np.zeros((self.width, self.height)).tolist()
 
         self.layers = [
-            grid[:][:], 
-            grid[:][:], 
-            grid[:][:]
+            copy.deepcopy(grid), 
+            copy.deepcopy(grid), 
+            copy.deepcopy(grid)
         ]
 
     def set_background(self, sprite):

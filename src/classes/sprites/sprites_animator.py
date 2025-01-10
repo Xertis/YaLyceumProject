@@ -21,7 +21,7 @@ class ANIMATOR:
 
         if not is_static and (current_time - self.last_frame_time) >= self.frame_duration:
             self.current_sprite = nums.in_range(
-                self.current_sprite + 1, 
+                self.current_sprite + 1,
                 0, 
                 len(self.sprites)-1
             )
