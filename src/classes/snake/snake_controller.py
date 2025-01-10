@@ -25,13 +25,12 @@ class CONTROLLER:
                 size = self.map.grid.grid_size
                 x1, y1 = x * size, y * size
 
-                size = size // 2
 
                 obj = Rect(
-                    x1-size, 
-                    y1-size, 
-                    size*2,
-                    size*2
+                    x1-size // 2, 
+                    y1-size // 2, 
+                    size,
+                    size
                 )
 
                 if snake.colliderect(obj):
