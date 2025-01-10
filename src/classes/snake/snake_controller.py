@@ -1,4 +1,5 @@
 import pygame
+import math
 from pygame import surface, Rect
 
 
@@ -15,14 +16,16 @@ class CONTROLLER:
             self.radius * 2,
             self.radius * 2
         )
+        size = self.map.grid.grid_size
 
-        for y in range(self.map.grid.height):
-            for x in range(self.map.grid.width):
-                
+        grid_pos = math.floor(pos[0] / size), math.floor(pos[1] / size)
+
+        for y in range(grid_pos[1]-2, grid_pos[1]+2):
+            for x in range(grid_pos[0]-2, grid_pos[0]+2):
+
                 if isinstance(self.map.grid.layers[1][x][y], float):
                     continue
                 
-                size = self.map.grid.grid_size
                 x1, y1 = x * size, y * size
 
 
