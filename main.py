@@ -8,6 +8,7 @@ pygame.display.set_caption(SCREEN_NAME)
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
+start_window = DrawStartWindow(screen, map)
 clock = pygame.time.Clock()
 
 map.generate()
@@ -23,7 +24,10 @@ while running:
     speed = map.snake.controller.speed * delta_time
     map.snake.move(speed)
 
-    map.draw()
+    if start_window.is_play:
+        map.draw()
+    else:
+        start_window.draw()
     pygame.display.flip()
     
 
