@@ -16,17 +16,20 @@ map.generate()
 
 running = True
 
+def is_play():
+    delta_time = clock.tick(FPS) / 1000.0
+    speed = map.snake.controller.speed * delta_time
+
+    map.snake.move(speed)
+    map.draw()
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-    delta_time = clock.tick(FPS) / 1000.0
-    speed = map.snake.controller.speed * delta_time
-    map.snake.move(speed)
-
     if start_window.is_play:
-        map.draw()
+        is_play()
     else:
         start_window.draw()
     pygame.display.flip()
