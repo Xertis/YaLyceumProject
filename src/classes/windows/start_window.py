@@ -11,6 +11,7 @@ class DrawStartWindow:
         self.map = map
         self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
         self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
+        self.font_jersey = LOADER.font.load(FONT_PATH, 65)
         self.draw()
 
     def draw(self):
@@ -42,14 +43,14 @@ class DrawStartWindow:
         pos = pygame.mouse.get_pos()
         if start_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', start_button_rect)
-            font = LOADER.font.load(FONT_PATH, 65)
-            start_button2 = font.render(TEXTS['start'], True, (229, 204, 255))
+
+            start_button2 = self.font_jersey.render(TEXTS['start'], True, (229, 204, 255))
             self.screen.blit(start_button2, (start_button_x - 15, start_button_y - 3))
 
         if rating_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', rating_button_rect)
-            font = LOADER.font.load(FONT_PATH, 65)
-            rating_button2 = font.render(TEXTS['rating'], True, (229, 204, 255))
+
+            rating_button2 = self.font_jersey.render(TEXTS['rating'], True, (229, 204, 255))
             self.screen.blit(rating_button2, (rating_button_x - 10, rating_button_y - 3))
 
         if pygame.mouse.get_pressed()[0] == True and start_button_rect.collidepoint(pos):
