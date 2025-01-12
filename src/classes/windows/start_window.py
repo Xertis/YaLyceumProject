@@ -19,6 +19,7 @@ class DrawStartWindow:
         self.screen.blit(rating_button, (333, 300))
 
         start_button_rect = pygame.Rect(275, 195, 250, 70)
+        rating_button_rect = pygame.Rect(328, 295, 250, 70)
 
         pos = pygame.mouse.get_pos()
         if start_button_rect.collidepoint(pos):
@@ -27,6 +28,13 @@ class DrawStartWindow:
             font = pygame.font.Font('res/fonts/Jersey10-Regular.ttf', 65)
             start_button2 = font.render('Start game', True, (229, 204, 255))
             self.screen.blit(start_button2, (270, 197))
+
+        if rating_button_rect.collidepoint(pos):
+            rect = pygame.Rect(328, 295, 250, 70)
+            pygame.draw.rect(self.screen, 'black', rect)
+            font = pygame.font.Font('res/fonts/Jersey10-Regular.ttf', 65)
+            rating_button2 = font.render('Rating', True, (229, 204, 255))
+            self.screen.blit(rating_button2, (328, 297))
 
         if pygame.mouse.get_pressed()[0] == True and start_button_rect.collidepoint(pos):
             self.is_play = True
