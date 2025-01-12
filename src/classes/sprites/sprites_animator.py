@@ -28,4 +28,4 @@ class ANIMATOR:
 
             self.last_frame_time = current_time
 
-        LOADER.place(pos, sprite, screen, angle)
+        LOADER.sprite.place(pos, sprite, screen, angle)

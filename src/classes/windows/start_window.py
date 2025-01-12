@@ -1,15 +1,16 @@
 import pygame
 from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
+from src.classes.sprites.sprites_loader import LOADER
 
-FONT_PATH = "res/fonts/Jersey10-Regular.ttf"
+FONT_PATH = "Jersey10-Regular.ttf"
 
 class DrawStartWindow:
     def __init__(self, scr, map):
         self.is_play = False
         self.screen = scr
         self.map = map
-        self.font_jersey100 = pygame.font.Font(FONT_PATH, 100)
-        self.font_jersey40 = pygame.font.Font(FONT_PATH, 60)
+        self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
+        self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
         self.draw()
 
     def draw(self):
@@ -41,13 +42,13 @@ class DrawStartWindow:
         pos = pygame.mouse.get_pos()
         if start_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', start_button_rect)
-            font = pygame.font.Font(FONT_PATH, 65)
+            font = LOADER.font.load(FONT_PATH, 65)
             start_button2 = font.render(TEXTS['start'], True, (229, 204, 255))
             self.screen.blit(start_button2, (start_button_x - 15, start_button_y - 3))
 
         if rating_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', rating_button_rect)
-            font = pygame.font.Font(FONT_PATH, 65)
+            font = LOADER.font.load(FONT_PATH, 65)
             rating_button2 = font.render(TEXTS['rating'], True, (229, 204, 255))
             self.screen.blit(rating_button2, (rating_button_x - 10, rating_button_y - 3))
 

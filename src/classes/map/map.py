@@ -16,10 +16,10 @@ class MAP:
 
         self.snake = SNAKE(16, self, [15, 15])
 
-        self.snake_head_sprite = LOADER.load("snake_head.png", (38, 38*4))
-        self.snake_tail_sprite = LOADER.load("snake_tail.png", (38, 38))
-        self.background_sprite = LOADER.load("background.png", (38, 38))
-        self.platform_sprite = LOADER.load("platform.png", (38, 38*5))
+        self.snake_head_sprite = LOADER.sprite.load("snake_head.png", (38, 38*4))
+        self.snake_tail_sprite = LOADER.sprite.load("snake_tail.png", (38, 38))
+        self.background_sprite = LOADER.sprite.load("background.png", (38, 38))
+        self.platform_sprite = LOADER.sprite.load("platform.png", (38, 38*5))
 
         self.snake_head_sprite = ANIMATOR(self.snake_head_sprite, 0.5*33*20)
         self.platform_sprite = ANIMATOR(self.platform_sprite, 5*33.20)
