@@ -1,7 +1,7 @@
 from pygame import image, surface, transform, time
 from src.utils.nums_utils import nums
 from src.utils.atlas_utils import atlas
-from src.classes.sprites.sprites_loader import LOADER
+from src.utils.loader import LOADER
 
 
 class ANIMATOR:

@@ -16,17 +16,21 @@ class CONTROLLER:
             self.radius * 2,
             self.radius * 2
         )
+
         size = self.map.grid.grid_size
+        step = size // 2
+
+        width, height = self.map.grid.width, self.map.grid.height
 
         grid_pos = math.floor(pos[0] / size), math.floor(pos[1] / size)
 
         for y in range(grid_pos[1]-2, grid_pos[1]+2):
             for x in range(grid_pos[0]-2, grid_pos[0]+2):
 
-                if isinstance(self.map.grid.layers[1][x][y], float):
+                if (x  < 0 or x >= width or y < 0 or y >= height) or isinstance(self.map.grid.layers[1][x][y], float):
                     continue
                 
-                x1, y1 = x * size, y * size
+                x1, y1 = x * size + step, y * size + step
 
 
                 obj = Rect(

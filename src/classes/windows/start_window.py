@@ -1,6 +1,6 @@
 import pygame
 from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
-from src.classes.sprites.sprites_loader import LOADER
+from src.utils.loader import LOADER
 
 FONT_PATH = "Jersey10-Regular.ttf"
 

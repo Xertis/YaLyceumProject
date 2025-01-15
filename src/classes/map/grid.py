@@ -7,8 +7,8 @@ class GRID:
 
         self.grid_size = 38
 
-        self.width = int(self.map.width*1.5 // self.grid_size)
-        self.height = int(self.map.height*1.5 // self.grid_size)
+        self.width = int(self.map.width*1 // self.grid_size + 1)
+        self.height = int(self.map.height*1 // self.grid_size + 1)
 
         grid = np.zeros((self.width, self.height)).tolist()
 
@@ -25,3 +25,9 @@ class GRID:
 
     def set(self, layer, x, y, sprite):
         self.layers[layer][x][y] = sprite
+
+    def pos_conv(self, pos):
+        x, y = pos[0], pos[1]
+        step = self.grid_size // 2
+
+        return (x * self.grid_size + step, y * self.grid_size + step)

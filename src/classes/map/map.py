@@ -1,11 +1,11 @@
 import pygame
-import numpy as np
 from src.classes.snake.snake import SNAKE
-from src.classes.sprites.sprites_loader import LOADER
+from src.utils.loader import LOADER
 from src.classes.sprites.sprites_animator import ANIMATOR
 from src.classes.map.painter import PAINTER
 from src.classes.map.grid import GRID
-from random import randint
+from src.classes.generation.generator import GENERATOR
+import time
 
 
 class MAP:
@@ -36,10 +36,9 @@ class MAP:
         self.painter.draw_snake()
 
     def generate(self):
-        # ТЕСТ ГЕНЕРАЦИИ, НЕ ИТОГОВЫЙ ВАРИАНТ
-        for y in range(self.grid.height):
-            for x in range(self.grid.width):
-                z = randint(0, 8)
+        w, h = self.grid.width, self.grid.height
+        visited = [(w // 2, h // 2)]
+        obj = self.platform_sprite
 
-                if z == 0:
-                    self.grid.set(1, x, y, self.platform_sprite)
+        for i in range(8):
+            GENERATOR.generate(int(time.time()) + i, self.grid.layers[1], visited, obj)
