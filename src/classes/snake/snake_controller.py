@@ -24,18 +24,18 @@ class CONTROLLER:
 
         grid_pos = math.floor(pos[0] / size), math.floor(pos[1] / size)
 
-        for y in range(grid_pos[1]-2, grid_pos[1]+2):
-            for x in range(grid_pos[0]-2, grid_pos[0]+2):
+        for y in range(grid_pos[1] - 2, grid_pos[1] + 2):
+            for x in range(grid_pos[0] - 2, grid_pos[0] + 2):
 
-                if (x  < 0 or x >= width or y < 0 or y >= height) or isinstance(self.map.grid.layers[1][x][y], float):
+                if (x < 0 or x >= width or y < 0 or y >= height) or isinstance(
+                        self.map.grid.layers[1][x][y], float):
                     continue
-                
+
                 x1, y1 = x * size + step, y * size + step
 
-
                 obj = Rect(
-                    x1-size // 2, 
-                    y1-size // 2, 
+                    x1 - size // 2,
+                    y1 - size // 2,
                     size,
                     size
                 )
@@ -53,7 +53,7 @@ class CONTROLLER:
             speed = self.speed
 
         speed *= 10
-        
+
         if keys[pygame.K_a]:
             move_x = -speed
         if keys[pygame.K_d]:

@@ -11,9 +11,14 @@ class PAINTER:
 
     def draw_snake(self):
         for segment in self.map.snake.tail:
-            LOADER.sprite.place(segment, self.map.snake_tail_sprite, self.map.screen, 0)
+            LOADER.sprite.place(
+                segment,
+                self.map.snake_tail_sprite,
+                self.map.screen,
+                0)
 
-        self.map.snake_head_sprite.place(self.map.snake.pos, self.map.screen, 0)
+        self.map.snake_head_sprite.place(
+            self.map.snake.pos, self.map.screen, 0)
 
     def draw_grid(self):
         size = self.map.grid.grid_size
@@ -29,4 +34,3 @@ class PAINTER:
                         LOADER.sprite.place(pos, sprite, self.map.screen)
                     elif isinstance(sprite, ANIMATOR):
                         sprite.place(pos, self.map.screen)
-

@@ -1,20 +1,21 @@
 import copy
 import numpy as np
 
+
 class GRID:
     def __init__(self, map):
         self.map = map
 
         self.grid_size = 38
 
-        self.width = int(self.map.width*1 // self.grid_size + 1)
-        self.height = int(self.map.height*1 // self.grid_size + 1)
+        self.width = int(self.map.width * 1 // self.grid_size + 1)
+        self.height = int(self.map.height * 1 // self.grid_size + 1)
 
         grid = np.zeros((self.width, self.height)).tolist()
 
         self.layers = [
-            copy.deepcopy(grid), 
-            copy.deepcopy(grid), 
+            copy.deepcopy(grid),
+            copy.deepcopy(grid),
             copy.deepcopy(grid)
         ]
 

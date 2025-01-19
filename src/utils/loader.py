@@ -3,14 +3,16 @@ from pygame.font import Font
 import sys
 import os
 
+
 def __get_path__(*path):
     base_path = ''
     if hasattr(sys, '_MEIPASS'):
         base_path = sys._MEIPASS
     else:
         base_path = os.getcwd()
-    
+
     return os.path.join(base_path, "res", '\\'.join(path))
+
 
 class sprite:
     @staticmethod
@@ -27,18 +29,19 @@ class sprite:
             return sprite
         else:
             return transform.scale(sprite, size)
-        
+
     @staticmethod
     def place(pos, sprite: surface.Surface, screen: surface.Surface, angle=0):
         rect = sprite.get_rect()
 
         sprite_width, sprite_height = sprite.get_size()
-        
+
         rect.x = pos[0] - sprite_width // 2
         rect.y = pos[1] - sprite_height // 2
 
         sprite = transform.rotate(sprite, angle)
         screen.blit(sprite, rect)
+
 
 class font:
     @staticmethod
@@ -51,8 +54,7 @@ class font:
 
         return Font(path, size)
 
+
 class LOADER:
     sprite = sprite
     font = font
-
-    
