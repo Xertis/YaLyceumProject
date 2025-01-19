@@ -6,5 +6,6 @@ FPS = 30
 # UI
 TEXTS = {
     "start": "Start game",
-    "rating": "Rating"
+    "rating": "Rating",
+    "options": "Options"
 }
