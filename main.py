@@ -12,10 +12,6 @@ map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 start_window = DrawStartWindow(screen, map)
 clock = pygame.time.Clock()
 
-START_WINDOW_MUSIC_PATH = 'res/Sounds/Musics/Fluffing-a-Duck (start window sound).mp3'
-start_window_channel = pygame.mixer.Channel(0)
-start_window_channel.play(pygame.mixer.Sound(START_WINDOW_MUSIC_PATH), loops=-1, fade_ms=10)
-
 map.generate()
 
 running = True
@@ -23,7 +19,6 @@ running = True
 def is_play():
     delta_time = clock.tick(FPS) / 1000.0
     speed = map.snake.controller.speed * delta_time
-    start_window_channel.stop()
 
     map.snake.move(speed)
     map.draw()

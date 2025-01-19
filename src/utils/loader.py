@@ -1,4 +1,4 @@
-from pygame import image, surface, transform
+from pygame import image, surface, transform, mixer
 from pygame.font import Font
 import sys
 import os
@@ -50,9 +50,22 @@ class font:
             return False
 
         return Font(path, size)
+    
+class sound:
+    @staticmethod
+    def load(path):
+
+        path = __get_path__("sounds", path)
+
+        if not os.path.exists(path):
+            return False
+
+        return mixer.Sound(path)
+
 
 class LOADER:
     sprite = sprite
     font = font
+    sound = sound
 
     
