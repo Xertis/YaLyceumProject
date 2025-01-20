@@ -4,7 +4,7 @@ from pygame import surface, Rect
 from src.utils.loader import LOADER
 import time
 
-MOVE_EFFECT_PATH = 'res/Sounds/Effects/move-effect.wav'
+MOVE_EFFECT_PATH = 'move-effect.wav'
 
 class CONTROLLER:
     def __init__(self, map, radius, speed):
@@ -13,7 +13,7 @@ class CONTROLLER:
         self.speed = speed
         self.start = 0
 
-        self.move_effect = pygame.mixer.Sound(MOVE_EFFECT_PATH)
+        self.move_effect = LOADER.sound.load(MOVE_EFFECT_PATH)
 
     def collision(self, pos):
         snake = Rect(
