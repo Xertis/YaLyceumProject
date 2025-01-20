@@ -6,10 +6,10 @@ FONT_PATH = "Jersey10-Regular.ttf"
 
 
 class DrawStartWindow:
-    def __init__(self, scr, map):
+    def __init__(self, scr):
         self.is_play = False
+        self.is_options = False
         self.screen = scr
-        self.map = map
         self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
         self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey = LOADER.font.load(FONT_PATH, 65)
@@ -98,4 +98,7 @@ class DrawStartWindow:
         if pygame.mouse.get_pressed(
         )[0] and start_button_rect.collidepoint(pos):
             self.is_play = True
-            self.map.draw()
+
+        if pygame.mouse.get_pressed(
+        )[0] and options_button_rect.collidepoint(pos):
+            self.is_options = True

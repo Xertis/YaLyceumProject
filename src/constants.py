@@ -7,5 +7,6 @@ FPS = 30
 TEXTS = {
     "start": "Start game",
     "rating": "Rating",
-    "options": "Options"
+    "options": "Options",
+    "return": "Return"
 }
