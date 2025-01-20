@@ -5,6 +5,7 @@ from src.classes.map.map import MAP
 from src.classes.windows.start_window import DrawStartWindow
 from src.classes.windows.options import OPTIONS
 
+pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512, devicename=None)
 pygame.init()
 pygame.display.set_caption(SCREEN_NAME)
 
