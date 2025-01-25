@@ -11,9 +11,10 @@ pygame.display.set_caption(SCREEN_NAME)
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 start_window = DrawStartWindow(screen)
-map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 options_window = OPTIONS(screen, start_window)
+map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
 clock = pygame.time.Clock()
+
 
 map.generate()
 
@@ -31,9 +32,18 @@ def is_options():
     options_window.draw()
 
 while running:
+    pos = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_volume_button_rect.collidepoint(pos):
+            if not options_window.volume >= 0.99:
+                options_window.volume += 0.1
+            pygame.mixer.Channel(0).set_volume(options_window.volume)
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.reduce_volume_button_rect.collidepoint(pos):
+            if not options_window.volume < 0.05:
+                options_window.volume -= 0.1
+                pygame.mixer.Channel(0).set_volume(options_window.volume)
 
     if start_window.is_play:
         is_play()

@@ -2,8 +2,8 @@ import pygame
 from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 from src.utils.loader import LOADER
 
-FONT_PATH = "Jersey10-Regular.ttf"
 MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
+FONT_PATH = "Jersey10-Regular.ttf"
 
 class DrawStartWindow:
     def __init__(self, scr):
@@ -16,9 +16,9 @@ class DrawStartWindow:
         self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey = LOADER.font.load(FONT_PATH, 65)
 
-        self.channel = pygame.mixer.Channel(0)
-        self.music = LOADER.sound.load(MUSIC_PATH)
-        self.channel.play(self.music, loops=-1, fade_ms=10)
+        channel = pygame.mixer.Channel(0)
+        music = LOADER.sound.load(MUSIC_PATH)
+        channel.play(music, loops=-1)
 
         self.draw()
 
@@ -53,7 +53,7 @@ class DrawStartWindow:
 
         start_button_rect = pygame.Rect(start_button_x - 10, start_button_y - 5, start_button_width + 20, 70)
         rating_button_rect = pygame.Rect(rating_button_x - 10, rating_button_y - 5, rating_button_width + 20, 70)
-        options_button_rect = pygame.Rect(options_button_x - 10, options_button_y - 5, options_button_width + 20, 70)
+        options_button_rect = pygame.Rect(options_button_x - 10, options_button_y - 5, options_button_width + 40, 70)
 
         pos = pygame.mouse.get_pos()
         if start_button_rect.collidepoint(pos):
@@ -75,7 +75,7 @@ class DrawStartWindow:
             self.screen.blit(options_button2, (options_button_x - 5, options_button_y - 3))
 
         if pygame.mouse.get_pressed()[0] == True and start_button_rect.collidepoint(pos):
-            self.channel.stop()
+            pygame.mixer.Channel(0).pause()
             self.is_play = True
 
         if pygame.mouse.get_pressed()[0] == True and options_button_rect.collidepoint(pos):

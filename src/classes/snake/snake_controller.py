@@ -2,6 +2,8 @@ import pygame
 import math
 from pygame import surface, Rect
 from src.utils.loader import LOADER
+from src.classes.windows.options import OPTIONS
+from src.classes.windows.start_window import DrawStartWindow
 import time
 
 MOVE_EFFECT_PATH = 'move-effect.wav'
@@ -52,6 +54,7 @@ class CONTROLLER:
         return False
 
     def snake_move(self, pos, speed=None):
+        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         keys = pygame.key.get_pressed()
         move_x, move_y = 0, 0
 
