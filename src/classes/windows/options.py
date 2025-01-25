@@ -4,7 +4,6 @@ from src.utils.loader import LOADER
 
 FONT_PATH = "Jersey10-Regular.ttf"
 
-
 class OPTIONS:
     def __init__(self, scr, start_window):
         self.screen = scr
@@ -14,8 +13,6 @@ class OPTIONS:
         self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)
         self.font_jersey50 = LOADER.font.load(FONT_PATH, 50)
         self.font_jersey55 = LOADER.font.load(FONT_PATH, 55)
-        self.is_reduce_vol = False
-        self.is_increase_vol = False
 
         self.increase_volume_button = self.font_jersey65.render(
             TEXTS['+'], True, (229, 204, 255))

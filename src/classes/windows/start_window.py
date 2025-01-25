@@ -9,12 +9,13 @@ class DrawStartWindow:
     def __init__(self, scr):
         self.is_play = False
         self.is_options = False
+        self.is_rating = False
         self.screen = scr
         self.map = map
 
         self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
         self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
-        self.font_jersey = LOADER.font.load(FONT_PATH, 65)
+        self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)
 
         channel = pygame.mixer.Channel(0)
         music = LOADER.sound.load(MUSIC_PATH)
@@ -52,31 +53,34 @@ class DrawStartWindow:
         self.screen.blit(options_button, (options_button_x, options_button_y))
 
         start_button_rect = pygame.Rect(start_button_x - 10, start_button_y - 5, start_button_width + 20, 70)
-        rating_button_rect = pygame.Rect(rating_button_x - 10, rating_button_y - 5, rating_button_width + 20, 70)
+        rating_button_rect = pygame.Rect(rating_button_x - 10, rating_button_y + 10, rating_button_width + 17, 45)
         options_button_rect = pygame.Rect(options_button_x - 10, options_button_y - 5, options_button_width + 40, 70)
 
         pos = pygame.mouse.get_pos()
         if start_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', start_button_rect)
 
-            start_button2 = self.font_jersey.render(TEXTS['start'], True, (229, 204, 255))
+            start_button2 = self.font_jersey65.render(TEXTS['start'], True, (229, 204, 255))
             self.screen.blit(start_button2, (start_button_x - 7, start_button_y - 3))
 
         if rating_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', rating_button_rect)
 
-            rating_button2 = self.font_jersey.render(TEXTS['rating'], True, (229, 204, 255))
+            rating_button2 = self.font_jersey65.render(TEXTS['rating'], True, (229, 204, 255))
             self.screen.blit(rating_button2, (rating_button_x - 5, rating_button_y - 3))
 
         if options_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, 'black', options_button_rect)
 
-            options_button2 = self.font_jersey.render(TEXTS['options'], True, (229, 204, 255))
+            options_button2 = self.font_jersey65.render(TEXTS['options'], True, (229, 204, 255))
             self.screen.blit(options_button2, (options_button_x - 5, options_button_y - 3))
 
         if pygame.mouse.get_pressed()[0] == True and start_button_rect.collidepoint(pos):
             pygame.mixer.Channel(0).pause()
             self.is_play = True
+
+        if pygame.mouse.get_pressed()[0] == True and rating_button_rect.collidepoint(pos):
+            self.is_rating = True
 
         if pygame.mouse.get_pressed()[0] == True and options_button_rect.collidepoint(pos):
             self.is_options = True

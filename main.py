@@ -4,6 +4,7 @@ from src.constants import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_NAME, FPS
 from src.classes.map.map import MAP
 from src.classes.windows.start_window import DrawStartWindow
 from src.classes.windows.options import OPTIONS
+from src.classes.windows.rating import RATING
 
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512, devicename=None)
 pygame.init()
@@ -12,24 +13,29 @@ pygame.display.set_caption(SCREEN_NAME)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 start_window = DrawStartWindow(screen)
 options_window = OPTIONS(screen, start_window)
-map = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
+map_window = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen)
+rating_window = RATING(screen, start_window)
 clock = pygame.time.Clock()
 
 
-map.generate()
+map_window.generate()
 
 running = True
 
 def is_play():
     delta_time = clock.tick(FPS) / 1000.0
-    speed = map.snake.controller.speed * delta_time
+    speed = map_window.snake.controller.speed * delta_time
 
-    map.snake.move(speed)
-    map.draw()
+    map_window.snake.move(speed)
+    map_window.draw()
 
 
 def is_options():
     options_window.draw()
+
+
+def is_rating():
+    rating_window.draw()
 
 while running:
     pos = pygame.mouse.get_pos()
@@ -49,6 +55,8 @@ while running:
         is_play()
     elif start_window.is_options:
         is_options()
+    elif start_window.is_rating:
+        is_rating()
     else:
         start_window.draw()
     pygame.display.flip()
