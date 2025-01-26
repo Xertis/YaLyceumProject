@@ -1,12 +1,11 @@
 import pygame
 import math
+import time
 from pygame import surface, Rect
 from src.utils.loader import LOADER
-from src.classes.windows.options import OPTIONS
-from src.classes.windows.start_window import DrawStartWindow
-import time
 
 MOVE_EFFECT_PATH = 'move-effect.wav'
+
 
 class CONTROLLER:
     def __init__(self, map, radius, speed):
@@ -16,6 +15,7 @@ class CONTROLLER:
         self.start = 0
 
         self.move_effect = LOADER.sound.load(MOVE_EFFECT_PATH)
+        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
 
     def collision(self, pos):
         snake = Rect(
@@ -54,7 +54,6 @@ class CONTROLLER:
         return False
 
     def snake_move(self, pos, speed=None):
-        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         keys = pygame.key.get_pressed()
         move_x, move_y = 0, 0
 
@@ -76,8 +75,6 @@ class CONTROLLER:
                 self.start = time.time() - 0.5
                 self.move_effect.play(loops=0)
 
-
-
         if_collision = self.collision((move_x + pos[0], move_y + pos[1]))
 
         if not if_collision:
@@ -85,5 +82,5 @@ class CONTROLLER:
             pos[1] += move_y
 
         pos[0], pos[1] = int(pos[0]), int(pos[1])
-
+        
         return pos

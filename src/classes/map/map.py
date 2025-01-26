@@ -1,4 +1,5 @@
 import pygame
+import time
 from src.classes.snake.snake import SNAKE
 from src.utils.loader import LOADER
 from src.classes.sprites.sprites_animator import ANIMATOR
@@ -6,8 +7,6 @@ from src.classes.map.painter import PAINTER
 from src.classes.map.grid import GRID
 from src.classes.generation.generator import GENERATOR
 from src.classes.apple.apple import APPLE
-from random import randint
-import time
 
 
 class MAP:
@@ -20,13 +19,15 @@ class MAP:
         self.apple = APPLE(self)
 
         self.snake_head_sprite = LOADER.sprite.load(
-            "snake_head.png", (38, 38 * 4))
+            "snake_head.png", (38, 38 * 4)
+        )
         self.snake_tail_sprite = LOADER.sprite.load("snake_tail.png", (38, 38))
         self.background_sprite = LOADER.sprite.load("background.png", (38, 38))
         self.platform_sprite = LOADER.sprite.load("platform.png", (38, 38 * 5))
 
         self.snake_head_sprite = ANIMATOR(
-            self.snake_head_sprite, 0.5 * 33 * 20)
+            self.snake_head_sprite, 0.5 * 33 * 20
+        )
         self.platform_sprite = ANIMATOR(self.platform_sprite, 5 * 33.20)
 
         self.painter = PAINTER(self)
@@ -47,7 +48,11 @@ class MAP:
         obj = self.platform_sprite
 
         for i in range(8):
-            GENERATOR.generate(int(time.time()) +
-                               i, self.grid.layers[1], visited, obj)
+            GENERATOR.generate(
+                int(time.time()) + i, 
+                self.grid.layers[1], 
+                visited, 
+                obj
+            )
             
         self.apple.place()
