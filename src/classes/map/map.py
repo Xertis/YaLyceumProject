@@ -5,6 +5,8 @@ from src.classes.sprites.sprites_animator import ANIMATOR
 from src.classes.map.painter import PAINTER
 from src.classes.map.grid import GRID
 from src.classes.generation.generator import GENERATOR
+from src.classes.apple.apple import APPLE
+from random import randint
 import time
 
 
@@ -15,6 +17,7 @@ class MAP:
         self.screen = s
 
         self.snake = SNAKE(16, self, [15, 15])
+        self.apple = APPLE(self)
 
         self.snake_head_sprite = LOADER.sprite.load(
             "snake_head.png", (38, 38 * 4))
@@ -34,6 +37,7 @@ class MAP:
         return (self.width, self.height)
 
     def draw(self):
+        self.apple.eating()
         self.painter.draw_grid()
         self.painter.draw_snake()
 
@@ -45,3 +49,5 @@ class MAP:
         for i in range(8):
             GENERATOR.generate(int(time.time()) +
                                i, self.grid.layers[1], visited, obj)
+            
+        self.apple.place()

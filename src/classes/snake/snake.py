@@ -9,16 +9,10 @@ class SNAKE:
         self.radius = radius
         self.controller = CONTROLLER(map, radius, 10)
         self.tail = [
-            [
-                0, 105], [
-                0, 105], [
-                0, 105], [
-                    0, 105], [
-                        0, 105], [
-                            0, 105], [
-                                0, 105], [
-                                    0, 105], [
-                                        0, 105]]  # Для теста хвоста, в идеале, сегменты должны добавляться после съеденного яблока
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ]
         self.map = map
 
     def tail_move(self):
