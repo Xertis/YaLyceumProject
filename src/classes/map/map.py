@@ -41,6 +41,7 @@ class MAP:
         self.apple.eating()
         self.painter.draw_grid()
         self.painter.draw_snake()
+        self.painter.draw_score()
 
     def generate(self):
         w, h = self.grid.width, self.grid.height
