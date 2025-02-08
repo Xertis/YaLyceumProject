@@ -19,8 +19,7 @@ class GENERATOR:
 
     @staticmethod
     def __validate__(mat, x, y):
-        return x >= 0 and x < len(mat) and y >= 0 and y < len(
-            mat[1]) and mat[x][y] == 0
+        return x >= 0 and x < len(mat) and y >= 0 and y < len(mat[0]) and mat[x][y] == 0
 
     @staticmethod
     def generate(
@@ -29,21 +28,44 @@ class GENERATOR:
             visited: list[tuple],
             obj=1) -> list[list]:
 
-        size = len(visited)
+        rand.seed(seed)
         dirs = list(DIRECTIONS)
 
-        for i in range(size):
-            cell = visited[i]
+        x, y = visited[0]
+        mat[x][y] = obj
 
-            x, y = cell[0], cell[1]
-            rand.seed(seed)
+        max_steps_in_direction = 2
+        current_direction = None
+        steps_in_current_direction = 0
+
+        while True:
             rand.shuffle(dirs)
 
-            new_x, new_y = GENERATOR.__place__(x, y, dirs[0])
+            new_direction = None
+            for dir in dirs:
+                if dir != current_direction:
+                    new_x, new_y = GENERATOR.__place__(x, y, dir)
+                    if GENERATOR.__validate__(mat, new_x, new_y):
+                        new_direction = dir
+                        break
 
-            if GENERATOR.__validate__(mat, new_x, new_y):
-                mat[new_x][new_y] = obj
-                mat[math.floor(x + (new_x - x) / 2)
-                    ][math.floor(y + (new_y - y) / 2)] = obj
+            if new_direction is None:
+                break
 
-                visited.append((new_x, new_y))
+            if new_direction != current_direction:
+                steps_in_current_direction = 0
+                current_direction = new_direction
+
+            new_x, new_y = GENERATOR.__place__(x, y, current_direction)
+            mat[new_x][new_y] = obj
+            mat[math.floor(x + (new_x - x) / 2)][math.floor(y + (new_y - y) / 2)] = obj
+            visited.append((new_x, new_y))
+
+            x, y = new_x, new_y
+
+            steps_in_current_direction += 1
+
+            if steps_in_current_direction >= max_steps_in_direction:
+                current_direction = None
+
+        return mat

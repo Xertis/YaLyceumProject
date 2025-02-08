@@ -40,11 +40,11 @@ class CONTROLLER:
                         self.map.grid.layers[1][x][y], float):
                     continue
 
-                x1, y1 = x * size + step, y * size + step
+                x1, y1 = x * size, y * size
 
                 obj = Rect(
-                    x1 - size // 2,
-                    y1 - size // 2,
+                    x1,
+                    y1,
                     size,
                     size
                 )

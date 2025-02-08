@@ -2,19 +2,25 @@ import math
 import copy
 from pygame import Rect
 
+DIRECTIONS = (
+    (0, 1),  # Вниз
+    (0, -1), # Вверх
+    (1, 0),  # Вправо
+    (-1, 0), # Влево
+)
 
 class GRAVITATION:
     def __init__(self, controller):
         self.controller = controller
         self.map = controller.map
-        self.dir = 0    #0 - вниз, 1 - влево, 2 - вверх, 3 - вправо
+        self.dir = 2    #0 - вниз, 1 - вверх, 2 - вправо, 3 - влево
         self.fall_speed = 1
 
     def __collision__(self, segment, platform):
         size = self.map.grid.grid_size
         step = size // 2
 
-        x1, y1 = platform[0] * size + step, platform[1] * size + step
+        x1, y1 = platform[0] * size, platform[1] * size
 
         segment = Rect(
             segment[0] - self.map.snake.radius,
@@ -24,10 +30,10 @@ class GRAVITATION:
         )
 
         _platform = Rect(
-            x1 - step,
-            y1 - step,
-            size,
-            size
+            x1-1,
+            y1-1,
+            size+2,
+            size+2
         )
 
         return segment.colliderect(_platform)
@@ -52,22 +58,25 @@ class GRAVITATION:
 
                     if self.__collision__(segment, (x, y)):
                         return True
-                
         return False
 
     def set_direction(self, direction):
         self.dir = direction
 
     def fall(self):
-        if len(self.map.snake.tail) < 5 or self.__check_holding__():
+        if self.__check_holding__():
             return False
         
         tail = self.map.snake.tail
         head = self.map.snake.pos
-
-        head[1] += self.fall_speed
         
+        dir = DIRECTIONS[self.dir]
+
+        head[0] += self.fall_speed * dir[0]
+        head[1] += self.fall_speed * dir[1]
+
         for segment in tail:
-            segment[1] += self.fall_speed
+            segment[0] += self.fall_speed * dir[0]
+            segment[1] += self.fall_speed * dir[1]
 
         return True
