@@ -13,6 +13,7 @@ class TUTORIAL:
         self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)  # Заголовок
         self.font_jersey40 = LOADER.font.load(FONT_PATH, 40)  # Основной текст
         self.font_jersey50 = LOADER.font.load(FONT_PATH, 50)  # Кнопка "Назад"
+        self.font_jersey55 = LOADER.font.load(FONT_PATH, 55)  # Кнопка назад при увеличении
 
     def draw(self):
         # Очистка экрана
@@ -37,12 +38,16 @@ class TUTORIAL:
         self.screen.blit(avoid_text, avoid_rect)
 
         # Кнопка "Назад"
-        back_button = self.font_jersey50.render('Back', True, (229, 204, 255))
+        back_button = self.font_jersey50.render(TEXTS['back'], True, (229, 204, 255))
         back_rect = back_button.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.8))
         self.screen.blit(back_button, back_rect)
 
         # Обработка клика на кнопку "Назад"
         mouse_pos = pygame.mouse.get_pos()
         if back_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', back_rect)
+            back_button2 = self.font_jersey55.render(TEXTS['back'], True, (229, 204, 255))
+            self.screen.blit(back_button2,
+                             back_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.796)))
             if pygame.mouse.get_pressed()[0]:
                 self.start_window.is_tutorial = False

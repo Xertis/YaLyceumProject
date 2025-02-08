@@ -29,11 +29,11 @@ class RATING:
         pygame.Surface.fill(self.screen, "black")
 
         return_button = self.font_jersey50.render(
-            TEXTS['return'], True, (229, 204, 255))
+            TEXTS['back'], True, (229, 204, 255))
 
         return_button_width = return_button.get_width()
         return_button_x = (SCREEN_WIDTH - return_button_width) / 2
-        return_button_y = SCREEN_HEIGHT * 0.7
+        return_button_y = SCREEN_HEIGHT * 0.75
 
         self.screen.blit(return_button, (return_button_x, return_button_y))
 
@@ -49,7 +49,7 @@ class RATING:
             pygame.draw.rect(self.screen, 'black', return_button_rect)
 
             return_button2 = self.font_jersey55.render(
-                TEXTS['return'], True, (229, 204, 255))
+                TEXTS['back'], True, (229, 204, 255))
             self.screen.blit(
                 return_button2,
                 (return_button_x - 6,
@@ -79,3 +79,5 @@ class RATING:
             score_rect = score_text.get_rect(center=(SCREEN_WIDTH // 2, y))
             self.screen.blit(score_text, score_rect)
             y += 50
+
+

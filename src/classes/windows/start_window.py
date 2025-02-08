@@ -36,7 +36,7 @@ class DrawStartWindow:
         start_rect = start_button.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.4))
         self.screen.blit(start_button, start_rect)
 
-        tutorial_button = self.font_jersey60.render('tutorial', True, (229, 204, 255))
+        tutorial_button = self.font_jersey60.render('Tutorial', True, (229, 204, 255))
         tutorial_rect = tutorial_button.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.5))
         self.screen.blit(tutorial_button, tutorial_rect)
 
@@ -50,18 +50,35 @@ class DrawStartWindow:
 
         # Обработка кликов
         mouse_pos = pygame.mouse.get_pos()
+
         if start_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', start_rect)
+            start_button2 = self.font_jersey65.render(TEXTS['start'], True, (229, 204, 255))
+            self.screen.blit(start_button2,
+                             start_button.get_rect(center=(SCREEN_WIDTH // 2.03, SCREEN_HEIGHT * 0.396)))
             if pygame.mouse.get_pressed()[0]:
                 self.is_play = True
 
         if tutorial_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', tutorial_rect)
+            tutorial_button2 = self.font_jersey65.render('Tutorial', True, (229, 204, 255))
+            self.screen.blit(tutorial_button2,
+                             tutorial_button.get_rect(center=(SCREEN_WIDTH // 2.03, SCREEN_HEIGHT * 0.496)))
             if pygame.mouse.get_pressed()[0]:
                 self.is_tutorial = True
 
         if rating_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', rating_rect)
+            rating_button2 = self.font_jersey65.render(TEXTS['rating'], True, (229, 204, 255))
+            self.screen.blit(rating_button2,
+                             rating_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.595)))
             if pygame.mouse.get_pressed()[0]:
                 self.is_rating = True
 
         if options_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', options_rect)
+            options_button2 = self.font_jersey65.render(TEXTS['options'], True, (229, 204, 255))
+            self.screen.blit(options_button2,
+                             options_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.696)))
             if pygame.mouse.get_pressed()[0]:
                 self.is_options = True

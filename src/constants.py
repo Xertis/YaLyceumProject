@@ -8,7 +8,7 @@ TEXTS = {
     "start": "Start game",
     "rating": "Rating",
     "options": "Options",
-    "return": "Return",
+    "back": "Back",
     "volume": "Volume",
     "+": "+",
     "-": "-",
