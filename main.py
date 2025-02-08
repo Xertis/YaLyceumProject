@@ -33,7 +33,7 @@ def save_score(score):
     with open(SCORES_FILE, 'r+') as file:
         scores = json.load(file)
         scores.append(score)
-        scores = sorted(scores, reverse=True)[:10]  # Топ-10 результатов
+        scores = sorted(scores, reverse=True)[:5]  # Топ-5 результатов
         file.seek(0)
         json.dump(scores, file)
         file.truncate()
