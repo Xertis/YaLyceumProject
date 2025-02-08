@@ -6,7 +6,7 @@ from src.classes.windows.start_window import DrawStartWindow
 from src.classes.windows.options import OPTIONS
 from src.classes.windows.rating import RATING
 from src.classes.windows.pause_window import PAUSE
-
+from src.classes.Tutorial import TUTORIAL
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512, devicename=None)
 pygame.init()
 pygame.display.set_caption(SCREEN_NAME)
@@ -21,6 +21,8 @@ clock = pygame.time.Clock()
 
 
 map_window.generate()
+
+tutorial_window = TUTORIAL(screen, start_window)
 
 running = True
 
@@ -39,7 +41,6 @@ def is_options():
 def is_rating():
     rating_window.draw()
 
-
 def is_pause():
     pause_window.draw()
 
@@ -57,6 +58,7 @@ while running:
                 options_window.volume -= 0.1
                 pygame.mixer.Channel(0).set_volume(options_window.volume)
 
+
     if start_window.is_play:
         is_play()
     elif start_window.is_options:
@@ -65,6 +67,8 @@ while running:
         is_rating()
     elif start_window.is_pause:
         is_pause()
+    elif start_window.is_tutorial:
+            tutorial_window.draw()
     else:
         start_window.draw()
     pygame.display.flip()
