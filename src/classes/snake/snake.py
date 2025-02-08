@@ -6,6 +6,7 @@ from src.classes.snake.snake_gravitation import GRAVITATION
 class SNAKE:
     def __init__(self, radius, map, pos, start_window):
         self.pos = pos
+        self.score = 0
         self.old_pos = [0, 0]
         self.radius = radius
         self.controller = CONTROLLER(map, radius, 10, start_window)
