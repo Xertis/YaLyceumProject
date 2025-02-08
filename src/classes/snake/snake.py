@@ -4,11 +4,11 @@ from src.classes.snake.snake_gravitation import GRAVITATION
 
 
 class SNAKE:
-    def __init__(self, radius, map, pos):
+    def __init__(self, radius, map, pos, start_window):
         self.pos = pos
         self.old_pos = [0, 0]
         self.radius = radius
-        self.controller = CONTROLLER(map, radius, 10)
+        self.controller = CONTROLLER(map, radius, 10, start_window)
         self.gravitation = GRAVITATION(self.controller)
         self.tail = [
             [0, 0],

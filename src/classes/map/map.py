@@ -10,12 +10,12 @@ from src.classes.apple.apple import APPLE
 
 
 class MAP:
-    def __init__(self, w, h, s: pygame.surface.Surface):
+    def __init__(self, w, h, s: pygame.surface.Surface, start_window):
         self.width = w
         self.height = h
         self.screen = s
 
-        self.snake = SNAKE(16, self, [15, 15])
+        self.snake = SNAKE(16, self, [15, 15], start_window)
         self.apple = APPLE(self)
 
         self.snake_head_sprite = LOADER.sprite.load(

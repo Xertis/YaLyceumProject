@@ -10,11 +10,11 @@ class DrawStartWindow:
         self.is_play = False
         self.is_options = False
         self.is_rating = False
+        self.is_pause = False
         self.screen = scr
-        self.map = map
 
         self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
-        self.font_jersey40 = LOADER.font.load(FONT_PATH, 60)
+        self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)
 
         channel = pygame.mixer.Channel(0)
@@ -27,9 +27,9 @@ class DrawStartWindow:
         pygame.Surface.fill(self.screen, 'black')
 
         name_of_game = self.font_jersey100.render(SCREEN_NAME, False, (178, 102, 255))
-        start_button = self.font_jersey40.render(TEXTS['start'], True, (229, 204, 255))
-        rating_button = self.font_jersey40.render(TEXTS['rating'], True, (229, 204, 255))
-        options_button = self.font_jersey40.render(TEXTS['options'], True, (229, 204, 255))
+        start_button = self.font_jersey60.render(TEXTS['start'], True, (229, 204, 255))
+        rating_button = self.font_jersey60.render(TEXTS['rating'], True, (229, 204, 255))
+        options_button = self.font_jersey60.render(TEXTS['options'], True, (229, 204, 255))
 
         name_width = name_of_game.get_width()
         name_x = (SCREEN_WIDTH - name_width) / 2

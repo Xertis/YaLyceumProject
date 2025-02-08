@@ -11,5 +11,8 @@ TEXTS = {
     "return": "Return",
     "volume": "Volume",
     "+": "+",
-    "-": "-"
+    "-": "-",
+    "yes": "yes",
+    "no": "no",
+    "exit?": "exit?"
 }

@@ -5,17 +5,18 @@ from pygame import surface, Rect
 from src.utils.loader import LOADER
 
 MOVE_EFFECT_PATH = 'move-effect.wav'
+MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
 
 
 class CONTROLLER:
-    def __init__(self, map, radius, speed):
+    def __init__(self, map, radius, speed, start_window):
         self.map = map
         self.radius = radius
         self.speed = speed
         self.start = 0
+        self.start_window = start_window
 
         self.move_effect = LOADER.sound.load(MOVE_EFFECT_PATH)
-        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
 
     def collision(self, pos):
         snake = Rect(
@@ -54,6 +55,7 @@ class CONTROLLER:
         return False
 
     def snake_move(self, pos, speed=None):
+        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         keys = pygame.key.get_pressed()
         move_x, move_y = 0, 0
 
@@ -74,6 +76,11 @@ class CONTROLLER:
             if time.time() - self.start > 1:
                 self.start = time.time() - 0.5
                 self.move_effect.play(loops=0)
+        if keys[pygame.K_ESCAPE]:
+            self.start_window.is_play = False
+            self.start_window.is_pause = True
+            channel = pygame.mixer.Channel(0)
+            channel.unpause()
 
         if_collision = self.collision((move_x + pos[0], move_y + pos[1]))
 
