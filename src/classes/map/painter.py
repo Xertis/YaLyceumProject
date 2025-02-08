@@ -20,6 +20,24 @@ class PAINTER:
         self.map.snake_head_sprite.place(
             self.map.snake.pos, self.map.screen, 0)
 
+    def draw_score(self):
+        score_text = LOADER.font.load("Jersey10-Regular.ttf", 30).render(
+            f"Apples {self.map.snake.score}",
+            True,
+            (255, 255, 255)
+        )
+        self.map.screen.blit(score_text, (10, 10))
+
+    def draw_rating(self, scores):
+        y = 100
+        for i, score in enumerate(scores[:10], 1):
+            text = LOADER.font.load("Jersey10-Regular.ttf", 40).render(
+                f"{i}. {score}",
+                True,
+                (255, 255, 255)
+            )
+            self.map.screen.blit(text, (100, y))
+            y += 50
     def draw_grid(self):
         size = self.map.grid.grid_size
         step = + size // 2
