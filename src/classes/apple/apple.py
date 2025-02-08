@@ -66,4 +66,5 @@ class APPLE:
             pos = self.pos
             self.map.grid.set(2, pos[0], pos[1], 0.0)
             self.map.snake.tail.append(self.map.snake.tail[-1])
+            self.map.snake.score += 1  # Увеличиваем счет
             self.place()
