@@ -36,6 +36,10 @@ class RATING:
         # Обработка клика на кнопку "Назад"
         mouse_pos = pygame.mouse.get_pos()
         if back_rect.collidepoint(mouse_pos):
+            pygame.draw.rect(self.screen, 'black', back_rect)
+            back_button2 = self.font_jersey55.render(TEXTS['back'], True, (229, 204, 255))
+            self.screen.blit(back_button2,
+                             back_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.796)))
             if pygame.mouse.get_pressed()[0]:
                 self.start_window.is_rating = False
 
@@ -43,7 +47,7 @@ class RATING:
         scores = load_scores()
 
         # Отрисовка заголовка
-        title = self.font_jersey50.render("raiting", True, (178, 102, 255))
+        title = self.font_jersey50.render(TEXTS["rating"], True, (178, 102, 255))
         title_rect = title.get_rect(center=(SCREEN_WIDTH // 2, 50))
         self.screen.blit(title, title_rect)
 

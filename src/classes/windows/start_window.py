@@ -36,7 +36,7 @@ class DrawStartWindow:
         start_rect = start_button.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.4))
         self.screen.blit(start_button, start_rect)
 
-        tutorial_button = self.font_jersey60.render('Tutorial', True, (229, 204, 255))
+        tutorial_button = self.font_jersey60.render(TEXTS["tutorial"], True, (229, 204, 255))
         tutorial_rect = tutorial_button.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.5))
         self.screen.blit(tutorial_button, tutorial_rect)
 
@@ -61,7 +61,7 @@ class DrawStartWindow:
 
         if tutorial_rect.collidepoint(mouse_pos):
             pygame.draw.rect(self.screen, 'black', tutorial_rect)
-            tutorial_button2 = self.font_jersey65.render('Tutorial', True, (229, 204, 255))
+            tutorial_button2 = self.font_jersey65.render(TEXTS["tutorial"], True, (229, 204, 255))
             self.screen.blit(tutorial_button2,
                              tutorial_button.get_rect(center=(SCREEN_WIDTH // 2.03, SCREEN_HEIGHT * 0.496)))
             if pygame.mouse.get_pressed()[0]:

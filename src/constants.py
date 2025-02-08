@@ -10,6 +10,7 @@ TEXTS = {
     "options": "Options",
     "back": "Back",
     "volume": "Volume",
+    "tutorial": "Tutorial",
     "+": "+",
     "-": "-",
     "yes": "yes",

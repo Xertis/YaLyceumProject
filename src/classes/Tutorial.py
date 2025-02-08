@@ -20,7 +20,7 @@ class TUTORIAL:
         self.screen.fill('black')
 
         # Заголовок "Обучение"
-        title = self.font_jersey60.render('Tutotial', True, (178, 102, 255))
+        title = self.font_jersey60.render(TEXTS["tutorial"], True, (178, 102, 255))
         title_rect = title.get_rect(center=(SCREEN_WIDTH // 2, SCREEN_HEIGHT * 0.1))
         self.screen.blit(title, title_rect)
 
