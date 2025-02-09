@@ -55,7 +55,7 @@ class CONTROLLER:
         return False
 
     def snake_move(self, pos, speed=None):
-        self.move_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+        self.move_effect.set_volume(pygame.mixer.Channel(1).get_volume())
         keys = pygame.key.get_pressed()
         move_x, move_y = 0, 0
 

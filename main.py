@@ -80,18 +80,28 @@ while running:
         if event.type == pygame.QUIT:
             save_score(map_window.snake.score)  # Сохраняем результат при выходе
             running = False
-        if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_volume_button_rect.collidepoint(pos):
-            if not options_window.volume >= 0.99:
-                options_window.volume += 0.1
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_music_button_rect.collidepoint(pos):
+            if not options_window.music >= 0.99:
+                options_window.music += 0.1
                 click_effect.play(loops=0)
-                pygame.mixer.Channel(0).set_volume(options_window.volume)
-                click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
-        if event.type == pygame.MOUSEBUTTONDOWN and options_window.reduce_volume_button_rect.collidepoint(pos):
-            if not options_window.volume < 0.05:
-                options_window.volume -= 0.1
+                pygame.mixer.Channel(0).set_volume(options_window.music)
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.reduce_music_button_rect.collidepoint(pos):
+            if not options_window.music < 0.05:
+                options_window.music -= 0.1
                 click_effect.play(loops=0)
-                pygame.mixer.Channel(0).set_volume(options_window.volume)
-                click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+                pygame.mixer.Channel(0).set_volume(options_window.music)
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_effects_button_rect.collidepoint(pos):
+            if not options_window.effect >= 0.99:
+                options_window.effect += 0.1
+                click_effect.play(loops=0)
+                pygame.mixer.Channel(1).set_volume(options_window.effect)
+                click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
+        if event.type == pygame.MOUSEBUTTONDOWN and options_window.reduce_effects_button_rect.collidepoint(pos):
+            if not options_window.effect < 0.05:
+                options_window.effect -= 0.1
+                click_effect.play(loops=0)
+                pygame.mixer.Channel(1).set_volume(options_window.effect)
+                click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
 
 
     if start_window.is_play:

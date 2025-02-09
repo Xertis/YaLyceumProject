@@ -22,15 +22,16 @@ class DrawStartWindow:
         self.head = LOADER.sprite.load("snake_head_menu.png", (56, 57))
         self.tail = LOADER.sprite.load("snake_tail.png", (56, 56))
 
-        channel0 = pygame.mixer.Channel(0)
+        music_channel = pygame.mixer.Channel(0)
+        effects_channel = pygame.mixer.Channel(1)
         music = LOADER.sound.load(MUSIC_PATH)
-        channel0.play(music, loops=-1)
+        music_channel.play(music, loops=-1)
         self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
         self.draw()
 
     def draw(self):
-        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+        self.click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
         self.screen.blit(self.background, (-230, -285))
         self.screen.blit(self.head, (200, 140))
         self.screen.blit(self.tail, (190, 187))

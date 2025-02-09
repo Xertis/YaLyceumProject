@@ -18,7 +18,7 @@ class PAUSE:
         self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
     def draw(self):
-        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+        self.click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
         pause_rect = pygame.Rect(SCREEN_WIDTH - 650, SCREEN_HEIGHT - 500, 500, 350)
         pygame.draw.rect(self.screen, (240, 143, 104), pause_rect)
 

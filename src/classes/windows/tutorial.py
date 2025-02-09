@@ -20,7 +20,7 @@ class TUTORIAL:
         self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
     def draw(self):
-        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+        self.click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
         # Очистка экрана
         self.screen.blit(self.background, (-230, -285))
 

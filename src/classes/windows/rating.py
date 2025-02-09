@@ -31,7 +31,7 @@ class RATING:
 
 
     def draw(self):
-        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
+        self.click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
 
         self.screen.blit(self.background, (-230, -285))
         self.screen.blit(self.apple, (310, 90))
