@@ -6,9 +6,10 @@ from src.classes.windows.start_window import DrawStartWindow
 from src.classes.windows.options import OPTIONS
 from src.classes.windows.rating import RATING
 from src.classes.windows.pause_window import PAUSE
-from src.classes.Tutorial import TUTORIAL
+from src.classes.windows.tutorial import TUTORIAL
 import json
 import os
+
 pygame.mixer.pre_init(frequency=44100, size=-16, channels=2, buffer=512, devicename=None)
 pygame.init()
 pygame.display.set_caption(SCREEN_NAME)
@@ -61,8 +62,14 @@ def is_options():
 def is_rating():
     rating_window.draw()
 
+
 def is_pause():
     pause_window.draw()
+
+
+def is_tutorial():
+    tutorial_window.draw()
+
 
 while running:
     pos = pygame.mouse.get_pos()
@@ -86,10 +93,10 @@ while running:
         is_options()
     elif start_window.is_rating:
         is_rating()
+    elif start_window.is_tutorial:
+        is_tutorial()
     elif start_window.is_pause:
         is_pause()
-    elif start_window.is_tutorial:
-            tutorial_window.draw()
     else:
         start_window.draw()
     pygame.display.flip()
