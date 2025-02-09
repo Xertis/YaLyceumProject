@@ -4,7 +4,7 @@ import time
 from pygame import surface, Rect
 from src.utils.loader import LOADER
 
-MOVE_EFFECT_PATH = 'move-effect.wav'
+MOVE_EFFECT_PATH = 'move_effect.wav'
 MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
 
 

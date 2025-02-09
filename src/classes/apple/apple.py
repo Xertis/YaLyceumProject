@@ -1,13 +1,17 @@
+import pygame.mixer
+
 from src.utils.loader import LOADER
 from pygame import Rect
 from random import randint as rand
 
+EAT_EFFECT_PATH = 'eat_effect.wav'
 
 class APPLE:
     def __init__(self, map):
         self.map = map
         self.pos = (0, 0)
         self.sprite = LOADER.sprite.load("apple.png", (38, 38))
+        self.eat_effect = LOADER.sound.load(EAT_EFFECT_PATH)
 
     def __count_neighbours__(self, pos):
         width, height = self.map.grid.width, self.map.grid.height
@@ -60,9 +64,11 @@ class APPLE:
         return False
     
     def eating(self):
+        self.eat_effect.set_volume(pygame.mixer.Channel(1).get_volume())
         if_collision = self.collision()
 
         if if_collision:
+            self.eat_effect.play(loops=0)
             pos = self.pos
             self.map.grid.set(2, pos[0], pos[1], 0.0)
             self.map.snake.tail.append(self.map.snake.tail[-1])
