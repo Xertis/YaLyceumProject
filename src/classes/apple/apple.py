@@ -73,4 +73,5 @@ class APPLE:
             self.map.grid.set(2, pos[0], pos[1], 0.0)
             self.map.snake.tail.append(self.map.snake.tail[-1])
             self.map.snake.score += 1  # Увеличиваем счет
+            self.map.snake.gravitation.set_direction(rand(0, 3))
             self.place()

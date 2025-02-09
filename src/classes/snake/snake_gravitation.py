@@ -13,8 +13,7 @@ class GRAVITATION:
     def __init__(self, controller):
         self.controller = controller
         self.map = controller.map
-        self.dir = 2    #0 - вниз, 1 - вверх, 2 - вправо, 3 - влево
-        self.fall_speed = 1
+        self.dir = 3    #0 - вниз, 1 - вверх, 2 - вправо, 3 - влево
 
     def __collision__(self, segment, platform):
         size = self.map.grid.grid_size
@@ -63,8 +62,12 @@ class GRAVITATION:
     def set_direction(self, direction):
         self.dir = direction
 
-    def fall(self):
-        if self.__check_holding__():
+    def fall(self, speed=None):
+        if speed is None:
+            speed = 0
+        speed += 10
+
+        if len(self.map.snake.tail) <= 5 or self.__check_holding__():
             return False
         
         tail = self.map.snake.tail
@@ -72,11 +75,12 @@ class GRAVITATION:
         
         dir = DIRECTIONS[self.dir]
 
-        head[0] += self.fall_speed * dir[0]
-        head[1] += self.fall_speed * dir[1]
+        if not self.map.snake.controller.collision((head[0] + speed * dir[0], head[1] + speed * dir[1])):
+            head[0] += speed * dir[0]
+            head[1] += speed * dir[1]
 
         for segment in tail:
-            segment[0] += self.fall_speed * dir[0]
-            segment[1] += self.fall_speed * dir[1]
+            segment[0] += speed * dir[0]
+            segment[1] += speed * dir[1]
 
         return True

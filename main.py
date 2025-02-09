@@ -51,11 +51,14 @@ tutorial_window = TUTORIAL(screen, start_window)
 running = True
 
 def is_play():
+    global running
     delta_time = clock.tick(FPS) / 1000.0
     speed = map_window.snake.controller.speed * delta_time
 
     map_window.snake.move(speed)
     map_window.draw()
+    if map_window.snake.check_death():
+        running = False
 
 
 def is_options():

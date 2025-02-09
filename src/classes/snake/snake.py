@@ -44,6 +44,15 @@ class SNAKE:
             old_x, old_y = cell_x, cell_y
             i += 1
 
+    def check_death(self):
+        x, y, = self.pos[0], self.pos[1]
+        size = self.map.grid.grid_size // 3
+        w, h = self.map.width - size, self.map.height - size
+        if (x < size or x >= w or y < size or y >= h):
+            return True
+        
+        return False
+
     def move(self, speed=None):
         pos = self.controller.snake_move(self.pos[:], speed)
 
@@ -57,4 +66,4 @@ class SNAKE:
 
         self.pos = pos
         self.tail_move()
-        self.gravitation.fall()
+        self.gravitation.fall(speed)
