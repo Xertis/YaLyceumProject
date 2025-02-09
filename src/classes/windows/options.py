@@ -5,6 +5,7 @@ from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 from src.utils.loader import LOADER
 
 FONT_PATH = "Jersey10-Regular.ttf"
+CLICK_EFFECT_PATH = "click_effect.wav"
 
 class OPTIONS:
     def __init__(self, scr, start_window):
@@ -43,8 +44,11 @@ class OPTIONS:
             self.reduce_volume_button_width + 10,
             30)
 
+        self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+
     def draw(self):
         self.screen.blit(self.background, (-230, -285))
+        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
 
         back_rect = pygame.Rect(SCREEN_WIDTH - 455, SCREEN_HEIGHT - 150, 107, 55)
         pygame.draw.rect(self.screen, (240, 143, 104), back_rect)
@@ -163,4 +167,5 @@ class OPTIONS:
 
         if pygame.mouse.get_pressed(
         )[0] and return_button_rect.collidepoint(pos):
+            self.click_effect.play(loops=0)
             self.start_window.is_options = False

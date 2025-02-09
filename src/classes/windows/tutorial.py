@@ -4,6 +4,7 @@ from src.classes.windows.pause_window import FONT_PATH
 from src.utils.loader import LOADER
 from src.constants import TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 
+CLICK_EFFECT_PATH = "click_effect.wav"
 
 # Новый класс для обучения
 class TUTORIAL:
@@ -16,8 +17,10 @@ class TUTORIAL:
         self.font_jersey55 = LOADER.font.load(FONT_PATH, 55)  # Кнопка назад при увеличении
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
         self.background = LOADER.sprite.load("menu_background.png", (1374, 1259))
+        self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
     def draw(self):
+        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         # Очистка экрана
         self.screen.blit(self.background, (-230, -285))
 
@@ -110,4 +113,5 @@ class TUTORIAL:
             self.screen.blit(back_button2,
                              back_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.796)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.start_window.is_tutorial = False

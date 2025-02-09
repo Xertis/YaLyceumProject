@@ -3,6 +3,7 @@ from src.constants import SCREEN_WIDTH, SCREEN_HEIGHT, TEXTS
 from src.utils.loader import LOADER
 
 FONT_PATH = "Jersey10-Regular.ttf"
+CLICK_EFFECT_PATH = "click_effect.wav"
 
 class PAUSE:
     def __init__(self, scr, start_window):
@@ -14,7 +15,10 @@ class PAUSE:
         self.font_jersey80 = LOADER.font.load(FONT_PATH, 80)
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
 
+        self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+
     def draw(self):
+        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         pause_rect = pygame.Rect(SCREEN_WIDTH - 650, SCREEN_HEIGHT - 500, 500, 350)
         pygame.draw.rect(self.screen, (240, 143, 104), pause_rect)
 
@@ -67,9 +71,10 @@ class PAUSE:
             self.screen.blit(yes_button2, (yes_button_x - 2, yes_button_y - 3))
 
         if pygame.mouse.get_pressed()[0] == True and no_button_rect.collidepoint(pos):
-            pygame.mixer.Channel(0).pause()
+            self.click_effect.play(loops=0)
             self.start_window.is_play = True
             self.start_window.is_pause = False
 
         if pygame.mouse.get_pressed()[0] == True and yes_button_rect.collidepoint(pos):
+            self.click_effect.play(loops=0)
             self.start_window.is_pause = False

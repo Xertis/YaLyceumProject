@@ -7,6 +7,7 @@ from src.classes.windows.options import OPTIONS
 from src.classes.windows.rating import RATING
 from src.classes.windows.pause_window import PAUSE
 from src.classes.windows.tutorial import TUTORIAL
+from src.utils.loader import LOADER
 import json
 import os
 
@@ -24,6 +25,8 @@ clock = pygame.time.Clock()
 
 
 SCORES_FILE = "scores.json"
+CLICK_EFFECT_PATH = "click_effect.wav"
+click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
 
 def save_score(score):
@@ -80,11 +83,15 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_volume_button_rect.collidepoint(pos):
             if not options_window.volume >= 0.99:
                 options_window.volume += 0.1
-            pygame.mixer.Channel(0).set_volume(options_window.volume)
+                click_effect.play(loops=0)
+                pygame.mixer.Channel(0).set_volume(options_window.volume)
+                click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         if event.type == pygame.MOUSEBUTTONDOWN and options_window.reduce_volume_button_rect.collidepoint(pos):
             if not options_window.volume < 0.05:
                 options_window.volume -= 0.1
+                click_effect.play(loops=0)
                 pygame.mixer.Channel(0).set_volume(options_window.volume)
+                click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
 
 
     if start_window.is_play:

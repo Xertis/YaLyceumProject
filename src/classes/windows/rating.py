@@ -3,8 +3,10 @@ from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 from src.utils.loader import LOADER
 import json
 import os
+
 FONT_PATH = "Jersey10-Regular.ttf"
 SCORES_FILE = "scores.json"
+CLICK_EFFECT_PATH = "click_effect.wav"
 
 
 def load_scores():
@@ -25,8 +27,11 @@ class RATING:
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
         self.background = LOADER.sprite.load("menu_background.png", (1374, 1259))
 
+        self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+
 
     def draw(self):
+        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
 
         self.screen.blit(self.background, (-230, -285))
         self.screen.blit(self.apple, (310, 90))
@@ -74,6 +79,7 @@ class RATING:
             self.screen.blit(back_button2,
                              back_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.796)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.start_window.is_rating = False
 
         # Загрузка результатов

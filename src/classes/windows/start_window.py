@@ -3,6 +3,7 @@ from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 from src.utils.loader import LOADER
 
 MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
+CLICK_EFFECT_PATH = "click_effect.wav"
 FONT_PATH = "Jersey10-Regular.ttf"
 
 class DrawStartWindow:
@@ -21,13 +22,15 @@ class DrawStartWindow:
         self.head = LOADER.sprite.load("snake_head_menu.png", (56, 57))
         self.tail = LOADER.sprite.load("snake_tail.png", (56, 56))
 
-        channel = pygame.mixer.Channel(0)
+        channel0 = pygame.mixer.Channel(0)
         music = LOADER.sound.load(MUSIC_PATH)
-        channel.play(music, loops=-1)
+        channel0.play(music, loops=-1)
+        self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 
         self.draw()
 
     def draw(self):
+        self.click_effect.set_volume(pygame.mixer.Channel(0).get_volume())
         self.screen.blit(self.background, (-230, -285))
         self.screen.blit(self.head, (200, 140))
         self.screen.blit(self.tail, (190, 187))
@@ -87,6 +90,7 @@ class DrawStartWindow:
             self.screen.blit(start_button2,
                              start_button.get_rect(center=(SCREEN_WIDTH // 2.05, SCREEN_HEIGHT * 0.396)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.is_play = True
 
         if tutorial_rect.collidepoint(mouse_pos):
@@ -95,6 +99,7 @@ class DrawStartWindow:
             self.screen.blit(tutorial_button2,
                              tutorial_button.get_rect(center=(SCREEN_WIDTH // 2.03, SCREEN_HEIGHT * 0.496)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.is_tutorial = True
 
         if rating_rect.collidepoint(mouse_pos):
@@ -103,6 +108,7 @@ class DrawStartWindow:
             self.screen.blit(rating_button2,
                              rating_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.595)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.is_rating = True
 
         if options_rect.collidepoint(mouse_pos):
@@ -111,4 +117,5 @@ class DrawStartWindow:
             self.screen.blit(options_button2,
                              options_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.696)))
             if pygame.mouse.get_pressed()[0]:
+                self.click_effect.play(loops=0)
                 self.is_options = True
