@@ -2,7 +2,8 @@ import pygame
 from src.constants import SCREEN_NAME, TEXTS, SCREEN_WIDTH, SCREEN_HEIGHT
 from src.utils.loader import LOADER
 
-MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
+START_WINDOW_MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
+GAME_MUSIC_PATH = 'game_music.mp3'
 CLICK_EFFECT_PATH = "click_effect.wav"
 FONT_PATH = "Jersey10-Regular.ttf"
 
@@ -22,11 +23,13 @@ class DrawStartWindow:
         self.head = LOADER.sprite.load("snake_head_menu.png", (56, 57))
         self.tail = LOADER.sprite.load("snake_tail.png", (56, 56))
 
-        music_channel = pygame.mixer.Channel(0)
-        effects_channel = pygame.mixer.Channel(1)
-        music = LOADER.sound.load(MUSIC_PATH)
-        music_channel.play(music, loops=-1)
+        self.start_window_music = pygame.mixer.Channel(0)
+        music = LOADER.sound.load(START_WINDOW_MUSIC_PATH)
+        self.start_window_music.play(music, loops=-1)
         self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+
+        self.game_music = pygame.mixer.Channel(0)
+        self.music2 = LOADER.sound.load(GAME_MUSIC_PATH)
 
         self.draw()
 
@@ -92,6 +95,8 @@ class DrawStartWindow:
                              start_button.get_rect(center=(SCREEN_WIDTH // 2.05, SCREEN_HEIGHT * 0.396)))
             if pygame.mouse.get_pressed()[0]:
                 self.click_effect.play(loops=0)
+                self.start_window_music.stop()
+                self.game_music.play(self.music2, loops=-1)
                 self.is_play = True
 
         if tutorial_rect.collidepoint(mouse_pos):

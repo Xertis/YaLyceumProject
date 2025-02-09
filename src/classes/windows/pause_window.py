@@ -4,6 +4,8 @@ from src.utils.loader import LOADER
 
 FONT_PATH = "Jersey10-Regular.ttf"
 CLICK_EFFECT_PATH = "click_effect.wav"
+START_WINDOW_MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
+GAME_MUSIC_PATH = 'game_music.mp3'
 
 class PAUSE:
     def __init__(self, scr, start_window):
@@ -14,8 +16,15 @@ class PAUSE:
         self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey80 = LOADER.font.load(FONT_PATH, 80)
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
+        self.settings = LOADER.sprite.load("settings.png", (40, 40))
+        self.settings2 = LOADER.sprite.load("settings.png", (45, 45))
 
         self.click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+
+        self.start_window_music = pygame.mixer.Channel(0)
+        self.music = LOADER.sound.load(START_WINDOW_MUSIC_PATH)
+        self.game_music = pygame.mixer.Channel(0)
+        self.music2 = LOADER.sound.load(GAME_MUSIC_PATH)
 
     def draw(self):
         self.click_effect.set_volume(pygame.mixer.Channel(1).get_volume())
@@ -24,6 +33,8 @@ class PAUSE:
 
         self.screen.blit(self.apple, (500, 414))
         self.screen.blit(self.apple, (326, 170))
+        self.screen.blit(self.settings, (570, 130))
+        settings_rect = pygame.Rect(SCREEN_WIDTH - 232, SCREEN_HEIGHT - 475, 45, 45)
 
         left_vignette = pygame.Rect(pause_rect.width - 350, pause_rect.height - 255, 18, 370)
         pygame.draw.rect(self.screen, (0, 121, 13), left_vignette)
@@ -70,6 +81,13 @@ class PAUSE:
             yes_button2 = self.font_jersey65.render(TEXTS['yes'], True, (128, 128, 128))
             self.screen.blit(yes_button2, (yes_button_x - 2, yes_button_y - 3))
 
+        if settings_rect.collidepoint(pos):
+            pygame.draw.rect(self.screen, (240, 143, 104), settings_rect)
+            self.screen.blit(self.settings2, (567, 127))
+
+        if pygame.mouse.get_pressed()[0] == True and settings_rect.collidepoint(pos):
+            self.start_window.is_options = True
+
         if pygame.mouse.get_pressed()[0] == True and no_button_rect.collidepoint(pos):
             self.click_effect.play(loops=0)
             self.start_window.is_play = True
@@ -77,4 +95,6 @@ class PAUSE:
 
         if pygame.mouse.get_pressed()[0] == True and yes_button_rect.collidepoint(pos):
             self.click_effect.play(loops=0)
+            self.game_music.stop()
+            self.start_window_music.play(self.music, loops=-1)
             self.start_window.is_pause = False
