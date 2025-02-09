@@ -17,6 +17,9 @@ class DrawStartWindow:
         self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
+        self.background = LOADER.sprite.load("menu_background.png", (1374, 1259))
+        self.head = LOADER.sprite.load("snake_head_menu.png", (56, 57))
+        self.tail = LOADER.sprite.load("snake_tail.png", (56, 56))
 
         channel = pygame.mixer.Channel(0)
         music = LOADER.sound.load(MUSIC_PATH)
@@ -25,7 +28,17 @@ class DrawStartWindow:
         self.draw()
 
     def draw(self):
-        pygame.Surface.fill(self.screen, (220, 123, 84))
+        self.screen.blit(self.background, (-230, -285))
+        self.screen.blit(self.head, (200, 140))
+        self.screen.blit(self.tail, (190, 187))
+        self.screen.blit(self.tail, (170, 228))
+        self.screen.blit(self.tail, (156, 272))
+        self.screen.blit(self.tail, (170, 314))
+        self.screen.blit(self.tail, (195, 349))
+        self.screen.blit(self.tail, (225, 377))
+        self.screen.blit(self.tail, (320, 430))
+        self.screen.blit(self.tail, (328, 474))
+        self.screen.blit(self.tail, (313, 515))
 
         buttons_rect = pygame.Rect(SCREEN_WIDTH - 540, SCREEN_HEIGHT - 400, 277, 255)
         pygame.draw.rect(self.screen, (240, 143, 104), buttons_rect)

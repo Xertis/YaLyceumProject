@@ -58,12 +58,12 @@ class PAUSE:
         pos = pygame.mouse.get_pos()
         if no_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, (240, 143, 104), no_button_rect)
-            no_button2 = self.font_jersey65.render(TEXTS['no'], True, (64, 64, 64))
+            no_button2 = self.font_jersey65.render(TEXTS['no'], True, (128, 128, 128))
             self.screen.blit(no_button2, (no_button_x - 2, no_button_y - 3))
 
         if yes_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, (240, 143, 104), yes_button_rect)
-            yes_button2 = self.font_jersey65.render(TEXTS['yes'], True, (64, 64, 64))
+            yes_button2 = self.font_jersey65.render(TEXTS['yes'], True, (128, 128, 128))
             self.screen.blit(yes_button2, (yes_button_x - 2, yes_button_y - 3))
 
         if pygame.mouse.get_pressed()[0] == True and no_button_rect.collidepoint(pos):

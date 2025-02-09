@@ -15,10 +15,11 @@ class TUTORIAL:
         self.font_jersey50 = LOADER.font.load(FONT_PATH, 50)  # Кнопка "Назад"
         self.font_jersey55 = LOADER.font.load(FONT_PATH, 55)  # Кнопка назад при увеличении
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
+        self.background = LOADER.sprite.load("menu_background.png", (1374, 1259))
 
     def draw(self):
         # Очистка экрана
-        self.screen.fill((220, 123, 84))
+        self.screen.blit(self.background, (-230, -285))
 
         # Заголовок "Обучение"
         title = self.font_jersey60.render(TEXTS["tutorial"], True, (0, 70, 0))
@@ -105,7 +106,7 @@ class TUTORIAL:
         mouse_pos = pygame.mouse.get_pos()
         if back_rect.collidepoint(mouse_pos):
             pygame.draw.rect(self.screen, (240, 143, 104), back_rect)
-            back_button2 = self.font_jersey55.render(TEXTS['back'], True, (64, 64, 64))
+            back_button2 = self.font_jersey55.render(TEXTS['back'], True, (128, 128, 128))
             self.screen.blit(back_button2,
                              back_button.get_rect(center=(SCREEN_WIDTH // 2.02, SCREEN_HEIGHT * 0.796)))
             if pygame.mouse.get_pressed()[0]:

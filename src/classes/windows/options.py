@@ -16,6 +16,7 @@ class OPTIONS:
         self.font_jersey50 = LOADER.font.load(FONT_PATH, 50)
         self.font_jersey55 = LOADER.font.load(FONT_PATH, 55)
         self.apple = LOADER.sprite.load("apple.png", (38, 38))
+        self.background = LOADER.sprite.load("menu_background.png", (1374, 1259))
 
         self.increase_volume_button = self.font_jersey65.render(
             TEXTS['+'], True, (229, 204, 255))
@@ -43,7 +44,7 @@ class OPTIONS:
             30)
 
     def draw(self):
-        pygame.Surface.fill(self.screen, (220, 123, 84))
+        self.screen.blit(self.background, (-230, -285))
 
         back_rect = pygame.Rect(SCREEN_WIDTH - 455, SCREEN_HEIGHT - 150, 107, 55)
         pygame.draw.rect(self.screen, (240, 143, 104), back_rect)
@@ -122,7 +123,7 @@ class OPTIONS:
 
 
         volume_digit = self.font_jersey55.render(
-            str(round(self.volume * 10)), True, (0, 121, 13))
+            str(round(self.volume * 10)), True, (200, 0, 0))
         volume_digit_width = volume_digit.get_width()
         volume_digit_x = (SCREEN_WIDTH - volume_digit_width) / 2
         volume_digit_y = SCREEN_HEIGHT * 0.36
@@ -134,7 +135,7 @@ class OPTIONS:
             pygame.draw.rect(self.screen, (240, 143, 104), return_button_rect)
 
             return_button2 = self.font_jersey55.render(
-                TEXTS['back'], True, (64, 64, 64))
+                TEXTS['back'], True, (128, 128, 128))
             self.screen.blit(
                 return_button2,
                 (return_button_x - 6,
@@ -144,7 +145,7 @@ class OPTIONS:
             pygame.draw.rect(self.screen, (240, 143, 104), self.increase_volume_button_rect)
 
             increase_volume_button2 = self.font_jersey75.render(
-                TEXTS['+'], True, (64, 64, 64))
+                TEXTS['+'], True, (128, 128, 128))
             self.screen.blit(
                 increase_volume_button2,
                 (increase_volume_button_x - 1,
@@ -154,7 +155,7 @@ class OPTIONS:
             pygame.draw.rect(self.screen, (240, 143, 104), self.reduce_volume_button_rect)
 
             reduce_volume_button2 = self.font_jersey75.render(
-                TEXTS['-'], True, (64, 64, 64))
+                TEXTS['-'], True, (128, 128, 128))
             self.screen.blit(
                 reduce_volume_button2,
                 (reduce_volume_button_x - 1,
