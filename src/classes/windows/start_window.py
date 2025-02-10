@@ -15,6 +15,7 @@ class DrawStartWindow:
         self.is_pause = False
         self.screen = scr
         self.is_tutorial = False
+        self.is_game_over = False
         self.font_jersey100 = LOADER.font.load(FONT_PATH, 100)
         self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)
         self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)

@@ -48,7 +48,7 @@ class PAUSE:
         lower_vignette = pygame.Rect(pause_rect.width - 350, pause_rect.height + 100, 500, 18)
         pygame.draw.rect(self.screen, (0, 121, 13), lower_vignette)
 
-        exit_question = self.font_jersey80.render(TEXTS["exit?"], True, (0, 101, 0))
+        exit_question = self.font_jersey80.render(TEXTS["exit?"], True, (0, 70, 0))
         exit_question_width = exit_question.get_width()
         exit_question_x = (pause_rect.width - exit_question_width) / 1.1
         exit_question_y = pause_rect.height * 0.5
@@ -75,26 +75,24 @@ class PAUSE:
             pygame.draw.rect(self.screen, (240, 143, 104), no_button_rect)
             no_button2 = self.font_jersey65.render(TEXTS['no'], True, (128, 128, 128))
             self.screen.blit(no_button2, (no_button_x - 2, no_button_y - 3))
+            if pygame.mouse.get_pressed()[0] == True and no_button_rect.collidepoint(pos):
+                self.click_effect.play(loops=0)
+                self.start_window.is_play = True
+                self.start_window.is_pause = False
 
         if yes_button_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, (240, 143, 104), yes_button_rect)
             yes_button2 = self.font_jersey65.render(TEXTS['yes'], True, (128, 128, 128))
             self.screen.blit(yes_button2, (yes_button_x - 2, yes_button_y - 3))
+            if pygame.mouse.get_pressed()[0] == True and yes_button_rect.collidepoint(pos):
+                self.click_effect.play(loops=0)
+                self.game_music.stop()
+                self.start_window_music.play(self.music, loops=-1)
+                self.start_window.is_pause = False
 
         if settings_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, (240, 143, 104), settings_rect)
             self.screen.blit(self.settings2, (567, 127))
+            if pygame.mouse.get_pressed()[0] == True and settings_rect.collidepoint(pos):
+                self.start_window.is_options = True
 
-        if pygame.mouse.get_pressed()[0] == True and settings_rect.collidepoint(pos):
-            self.start_window.is_options = True
-
-        if pygame.mouse.get_pressed()[0] == True and no_button_rect.collidepoint(pos):
-            self.click_effect.play(loops=0)
-            self.start_window.is_play = True
-            self.start_window.is_pause = False
-
-        if pygame.mouse.get_pressed()[0] == True and yes_button_rect.collidepoint(pos):
-            self.click_effect.play(loops=0)
-            self.game_music.stop()
-            self.start_window_music.play(self.music, loops=-1)
-            self.start_window.is_pause = False

@@ -17,5 +17,8 @@ TEXTS = {
     "-": "-",
     "yes": "yes",
     "no": "no",
-    "exit?": "exit?"
+    "exit?": "exit?",
+    "game over": "GAME OVER",
+    "back to menu": "back to menu",
+    "score": "Score"
 }

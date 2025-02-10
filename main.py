@@ -7,6 +7,7 @@ from src.classes.windows.options import OPTIONS
 from src.classes.windows.rating import RATING
 from src.classes.windows.pause_window import PAUSE
 from src.classes.windows.tutorial import TUTORIAL
+from src.classes.windows.game_over import GAME_OVER
 from src.utils.loader import LOADER
 import json
 import os
@@ -21,12 +22,15 @@ options_window = OPTIONS(screen, start_window)
 map_window = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen, start_window)
 rating_window = RATING(screen, start_window)
 pause_window = PAUSE(screen, start_window)
+game_over_window = GAME_OVER(screen, start_window, map_window)
 clock = pygame.time.Clock()
 
 
 SCORES_FILE = "scores.json"
 CLICK_EFFECT_PATH = "click_effect.wav"
+GAME_OVER_PATH = 'game_over_effect.wav'
 click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
+game_over_effect = LOADER.sound.load(GAME_OVER_PATH)
 
 
 def save_score(score):
@@ -58,7 +62,11 @@ def is_play():
     map_window.snake.move(speed)
     map_window.draw()
     if map_window.snake.check_death():
-        running = False
+        game_over_effect.set_volume(pygame.mixer.Channel(1).get_volume())
+        game_over_effect.play(loops=0)
+        save_score(map_window.snake.score)  # Сохраняем результат при проигрыше
+        start_window.is_game_over = True
+        start_window.is_play = False
 
 
 def is_options():
@@ -77,11 +85,14 @@ def is_tutorial():
     tutorial_window.draw()
 
 
+def is_game_over():
+    game_over_window.draw()
+
+
 while running:
     pos = pygame.mouse.get_pos()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            save_score(map_window.snake.score)  # Сохраняем результат при выходе
             running = False
         if event.type == pygame.MOUSEBUTTONDOWN and options_window.increase_music_button_rect.collidepoint(pos):
             if not options_window.music >= 0.99:
@@ -117,6 +128,8 @@ while running:
         is_tutorial()
     elif start_window.is_pause:
         is_pause()
+    elif start_window.is_game_over:
+        is_game_over()
     else:
         start_window.draw()
     pygame.display.flip()
