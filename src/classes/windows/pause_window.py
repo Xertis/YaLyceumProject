@@ -8,9 +8,10 @@ START_WINDOW_MUSIC_PATH = "Fluffing-a-Duck (start window sound).mp3"
 GAME_MUSIC_PATH = 'game_music.mp3'
 
 class PAUSE:
-    def __init__(self, scr, start_window):
+    def __init__(self, scr, start_window, map_win):
         self.screen = scr
         self.start_window = start_window
+        self.map_window = map_win
 
         self.font_jersey65 = LOADER.font.load(FONT_PATH, 65)
         self.font_jersey60 = LOADER.font.load(FONT_PATH, 60)
@@ -89,6 +90,13 @@ class PAUSE:
                 self.game_music.stop()
                 self.start_window_music.play(self.music, loops=-1)
                 self.start_window.is_pause = False
+                self.map_window.snake.tail = [
+                                    [0, 0],
+                                    [0, 0],
+                                    [0, 0]
+                ]
+                self.map_window.snake.pos = [15, 15]
+                self.map_window.snake.score = 0
 
         if settings_rect.collidepoint(pos):
             pygame.draw.rect(self.screen, (240, 143, 104), settings_rect)

@@ -15,7 +15,8 @@ class MAP:
         self.height = h
         self.screen = s
 
-        self.snake = SNAKE(16, self, [15, 15], start_window)
+        self.snake = SNAKE(16, self, [15, 15], start_window
+                           )
         self.apple = APPLE(self)
 
         self.snake_head_sprite = LOADER.sprite.load(
