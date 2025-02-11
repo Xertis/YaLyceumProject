@@ -103,4 +103,5 @@ class PAUSE:
             self.screen.blit(self.settings2, (567, 127))
             if pygame.mouse.get_pressed()[0] == True and settings_rect.collidepoint(pos):
                 self.start_window.is_options = True
+                self.map_window.generation()
 

@@ -32,6 +32,11 @@ GAME_OVER_PATH = 'game_over_effect.wav'
 click_effect = LOADER.sound.load(CLICK_EFFECT_PATH)
 game_over_effect = LOADER.sound.load(GAME_OVER_PATH)
 
+tutorial_window = TUTORIAL(screen, start_window)
+
+running = True
+map_window.generate()
+
 
 def save_score(score):
     if not os.path.exists(SCORES_FILE):
@@ -47,14 +52,9 @@ def save_score(score):
         file.truncate()
 
 
-tutorial_window = TUTORIAL(screen, start_window)
-
-running = True
-
-map_window.generate()
-
 def is_play():
     global running
+    global is_game
     delta_time = clock.tick(FPS) / 1000.0
     speed = map_window.snake.controller.speed * delta_time
 
@@ -72,7 +72,7 @@ def is_play():
             [0, 0]
         ]
         map_window.snake.pos = [15, 15]
-        map_window.snake.score = 0
+        map_window.generate()
 
 
 def is_options():
@@ -139,7 +139,7 @@ while running:
     else:
         start_window.draw()
     pygame.display.flip()
-    
+
 
 pygame.quit()
 sys.exit()

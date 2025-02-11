@@ -77,3 +77,4 @@ class GAME_OVER:
                 self.click_effect.play(loops=0)
                 self.start_window_music.play(self.music, loops=-1)
                 self.start_window.is_game_over = False
+                self.map_window.snake.score = 0
