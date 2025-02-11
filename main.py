@@ -21,7 +21,7 @@ start_window = DrawStartWindow(screen)
 options_window = OPTIONS(screen, start_window)
 map_window = MAP(SCREEN_WIDTH, SCREEN_HEIGHT, screen, start_window)
 rating_window = RATING(screen, start_window)
-pause_window = PAUSE(screen, start_window)
+pause_window = PAUSE(screen, start_window, map_window)
 game_over_window = GAME_OVER(screen, start_window, map_window)
 clock = pygame.time.Clock()
 
@@ -47,12 +47,11 @@ def save_score(score):
         file.truncate()
 
 
-
-map_window.generate()
-
 tutorial_window = TUTORIAL(screen, start_window)
 
 running = True
+
+map_window.generate()
 
 def is_play():
     global running
@@ -67,6 +66,13 @@ def is_play():
         save_score(map_window.snake.score)  # Сохраняем результат при проигрыше
         start_window.is_game_over = True
         start_window.is_play = False
+        map_window.snake.tail = [
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ]
+        map_window.snake.pos = [15, 15]
+        map_window.snake.score = 0
 
 
 def is_options():

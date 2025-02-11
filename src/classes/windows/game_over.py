@@ -52,8 +52,7 @@ class GAME_OVER:
         game_over_text_x = (game_over_rect.width - game_over_text_width) / 0.81
         game_over_text_y = game_over_rect.height * 0.4
 
-        text_score = TEXTS["score"]
-        score_text = self.font_jersey55.render(f"{text_score}: {self.map_window.snake.score}", True, (200, 0, 0))
+        score_text = self.font_jersey55.render(f"{TEXTS['score']}: {self.map_window.snake.score}", True, (200, 0, 0))
         score_text_width = score_text.get_width()
         score_text_x = (game_over_rect.width - score_text_width) / 1.05
         score_text_y = game_over_rect.height * 0.7
