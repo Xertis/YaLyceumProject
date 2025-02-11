@@ -2,3 +2,4 @@ pyinstaller
 pygame
 numpy
 scipy
+heapq

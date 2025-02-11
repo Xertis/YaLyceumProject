@@ -1,8 +1,9 @@
+import math
 import pygame.mixer
-
 from src.utils.loader import LOADER
 from pygame import Rect
 from random import randint as rand
+from src.utils.path_finder import PATH_FINDER
 
 EAT_EFFECT_PATH = 'eat_effect.wav'
 
@@ -32,7 +33,14 @@ class APPLE:
         while True:
             width, height = self.map.grid.width-1, self.map.grid.height-1
             x, y = rand(0, width), rand(0, height)
-            if self.map.grid.layers[1][x][y] == 0.0 and self.__count_neighbours__((x, y)) > 0:
+
+            snake_pos = self.map.snake.pos
+            grid_size = self.map.grid.grid_size
+
+            snake_pos = (math.floor(snake_pos[0] / grid_size), math.floor(snake_pos[1] / grid_size))
+            
+            have_path = PATH_FINDER.have_path((x, y), snake_pos, self.map.grid.layers[1])
+            if self.map.grid.layers[1][x][y] == 0.0 and self.__count_neighbours__((x, y)) > 0 and have_path:
                 self.pos = (x, y)
                 self.map.grid.set(2, x, y, self.sprite)
                 break
