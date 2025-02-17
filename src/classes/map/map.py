@@ -43,8 +43,11 @@ class MAP:
         self.painter.draw_grid()
         self.painter.draw_snake()
         self.painter.draw_score()
+        self.painter.draw_gravity()
 
     def generate(self):
+        self.grid = GRID(self)
+        self.grid.set_background(self.background_sprite)
         w, h = self.grid.width, self.grid.height
         visited = [(w // 2, h // 2)]
         obj = self.platform_sprite

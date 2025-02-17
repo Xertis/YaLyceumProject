@@ -20,6 +20,20 @@ class PAINTER:
         self.map.snake_head_sprite.place(
             self.map.snake.pos, self.map.screen, 0)
 
+    def draw_gravity(self):
+        directions = {
+            0: "DOWN",
+            1: "UP",
+            2: "RIGHT",
+            3: "LEFT"
+        }
+        gravity_text = LOADER.font.load("Jersey10-Regular.ttf", 30).render(
+            f"Gravitation: {directions[self.map.snake.gravitation.dir]}",
+            True,
+            (255, 255, 255)
+        )
+        self.map.screen.blit(gravity_text, (self.map.width - 250, 10))
+
     def draw_score(self):
         score_text = LOADER.font.load("Jersey10-Regular.ttf", 30).render(
             f"Apples {self.map.snake.score}",

@@ -8,8 +8,7 @@ class PATH_FINDER:
     @staticmethod
     def have_path(start, goal, grid):
         rows, cols = len(grid), len(grid[0])
-        
-        # Проверяем, что начальная и конечная точки не являются препятствиями
+
         if grid[start[0]][start[1]] != 0.0 or grid[goal[0]][goal[1]] != 0.0:
             return False
 
